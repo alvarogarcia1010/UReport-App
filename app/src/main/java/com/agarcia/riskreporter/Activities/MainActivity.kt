@@ -1,7 +1,8 @@
-package com.agarcia.riskreporter
+package com.agarcia.riskreporter.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.agarcia.riskreporter.R
 
 class MainActivity : AppCompatActivity() {
 
