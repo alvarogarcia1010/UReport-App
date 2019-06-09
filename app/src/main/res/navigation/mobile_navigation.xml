@@ -9,6 +9,8 @@
               android:label="@string/list_reports" tools:layout="@layout/fragment_report_list">
         <action android:id="@+id/new_action"
                 app:destination="@id/destination_new_report"/>
+        <action
+                app:destination="@id/destination_report_detail" android:id="@+id/next_action"/>
     </fragment>
     <fragment android:id="@+id/destination_maps" android:name="com.agarcia.riskreporter.Fragments.GoogleMapsFragment"
               tools:layout="@layout/fragment_google_maps" android:label="@string/maps"/>
@@ -16,4 +18,7 @@
               android:label="@string/my_perfil" tools:layout="@layout/fragment_my_perfil"/>
     <fragment android:id="@+id/destination_new_report" android:name="com.agarcia.riskreporter.Fragments.NewReportFragment"
               android:label="fragment_new_report" tools:layout="@layout/fragment_new_report"/>
+    <fragment android:id="@+id/destination_report_detail"
+              android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
+              android:label="Detalle del reporte" tools:layout="@layout/fragment_report_detail"/>
 </navigation>
