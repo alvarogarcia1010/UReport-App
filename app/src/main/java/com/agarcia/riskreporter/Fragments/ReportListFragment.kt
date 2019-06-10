@@ -17,6 +17,12 @@ class ReportListFragment : Fragment() {
     {
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
 
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val fab: View = view.findViewById(R.id.fab)
         val btnDetails: View = view.findViewById(R.id.list_btn_next_action)
         val btnDetails1: View = view.findViewById(R.id.list_btn_next_action1)
@@ -40,7 +46,5 @@ class ReportListFragment : Fragment() {
             val nextAction = ReportListFragmentDirections.nextAction()
             Navigation.findNavController(it).navigate(nextAction)
         }
-
-        return view
     }
 }
