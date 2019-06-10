@@ -19,12 +19,24 @@ class ReportListFragment : Fragment() {
 
         val fab: View = view.findViewById(R.id.fab)
         val btnDetails: View = view.findViewById(R.id.list_btn_next_action)
+        val btnDetails1: View = view.findViewById(R.id.list_btn_next_action1)
+        val btnDetails2: View = view.findViewById(R.id.list_btn_next_action2)
 
         fab.setOnClickListener { view ->
             Navigation.findNavController(view).navigate(R.id.new_action)
         }
 
         btnDetails.setOnClickListener {
+            val nextAction = ReportListFragmentDirections.nextAction()
+            Navigation.findNavController(it).navigate(nextAction)
+        }
+
+        btnDetails1.setOnClickListener {
+            val nextAction = ReportListFragmentDirections.nextAction()
+            Navigation.findNavController(it).navigate(nextAction)
+        }
+
+        btnDetails2.setOnClickListener {
             val nextAction = ReportListFragmentDirections.nextAction()
             Navigation.findNavController(it).navigate(nextAction)
         }

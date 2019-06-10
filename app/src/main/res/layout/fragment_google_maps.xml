@@ -5,12 +5,10 @@
              android:layout_height="match_parent"
              tools:context=".Fragments.GoogleMapsFragment">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@android:color/black"
-            android:text="MAPS"
-            android:textSize="60sp"/>
+    <ImageView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/uca"/>
 
 </FrameLayout>
