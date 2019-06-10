@@ -5,84 +5,135 @@
              android:layout_height="match_parent"
              tools:context=".Fragments.RegisterFragment">
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="56dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-        <Button
-                android:id="@+id/register_photo"
-                android:layout_gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@android:color/holo_green_dark"
-                android:text="Select Photo"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-
-            <EditText android:id="@+id/register_et_username"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textCapWords"
-                      android:hint="Username" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-
-            <EditText android:id="@+id/register_et_email"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textEmailAddress"
-                      android:hint="Email" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-
-            <EditText android:id="@+id/register_et_password"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPassword"
-                      android:hint="Password"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/register_btn_register"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:padding="12dp"
-                android:background="@android:color/holo_green_dark"
-                android:textColor="@android:color/white"
-                android:text="Create Account"/>
-
-        <TextView android:id="@+id/register_btn_login"
-                  android:layout_width="fill_parent"
+    <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginBottom="24dp"
-                  android:text="Already a member? Login"
-                  android:gravity="center"
-                  android:textSize="16dip"/>
+                  android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/register_photo"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/profile"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+        </LinearLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_username"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textCapWords"
+                              android:hint="Nombre Completo" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_email"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textEmailAddress"
+                              android:hint="Correo" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText
+                            android:id="@+id/register_et_institucion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Institución"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_password"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Contraseña"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_passwordconfirm"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Confirmar Contraseña"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/register_btn_register"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:padding="12dp"
+                        android:background="@android:color/holo_green_dark"
+                        android:textColor="@android:color/white"
+                        android:text="Create Account"/>
+
+                <TextView android:id="@+id/register_btn_login"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginBottom="24dp"
+                          android:text="Already a member? Login"
+                          android:gravity="center"
+                          android:textSize="16dip"/>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
 
 
     </LinearLayout>
+
 </FrameLayout>

@@ -47,4 +47,6 @@ class ReportListFragment : Fragment() {
             Navigation.findNavController(it).navigate(nextAction)
         }
     }
+
+
 }

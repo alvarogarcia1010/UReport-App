@@ -27,10 +27,10 @@ class MyPerfilFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val view = this.getView()
         val navController = Navigation.findNavController(view, R.id.nav_host_fragment)
         val navigated:Boolean = NavigationUI.onNavDestinationSelected(item!!, navController)
         return navigated || super.onOptionsItemSelected(item)
-    }
+    }*/
 }
