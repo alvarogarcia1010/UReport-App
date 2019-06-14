@@ -1,10 +1,12 @@
-package com.agarcia.riskreporter
+package com.agarcia.riskreporter.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.agarcia.riskreporter.R
+import com.agarcia.riskreporter.Report
 import kotlinx.android.synthetic.main.report_item.view.*
 
 abstract class ReportAdapter internal constructor(context: Context) : RecyclerView.Adapter<ReportAdapter.ViewHolder>(){

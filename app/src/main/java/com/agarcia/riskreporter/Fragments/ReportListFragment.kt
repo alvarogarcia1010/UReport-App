@@ -1,6 +1,7 @@
 package com.agarcia.riskreporter.Fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.Report
-import com.agarcia.riskreporter.ReportAdapter
-import kotlinx.android.synthetic.main.fragment_report_list.*
+import com.agarcia.riskreporter.Activities.ReportActivity
+import com.agarcia.riskreporter.Adapters.ReportAdapter
 import kotlinx.android.synthetic.main.fragment_report_list.view.*
 
 class ReportListFragment : Fragment() {
@@ -48,8 +49,11 @@ class ReportListFragment : Fragment() {
 
         val fab : View = view.findViewById(R.id.fab)
 
-        fab.setOnClickListener { view ->
-            Navigation.findNavController(view).navigate(R.id.new_action)
+        fab.setOnClickListener {
+            //Navigation.findNavController(view).navigate(R.id.new_action)
+
+            val intent = Intent(it.context, ReportActivity::class.java)
+            startActivity(intent)
         }
 
         addReports()
