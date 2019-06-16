@@ -50,10 +50,10 @@ class ReportListFragment : Fragment() {
         val fab : View = view.findViewById(R.id.fab)
 
         fab.setOnClickListener {
-            //Navigation.findNavController(view).navigate(R.id.new_action)
-
-            val intent = Intent(it.context, ReportActivity::class.java)
-            startActivity(intent)
+            Navigation.findNavController(view).navigate(R.id.new_action)
+//
+//            val intent = Intent(it.context, ReportActivity::class.java)
+//            startActivity(intent)
         }
 
         addReports()

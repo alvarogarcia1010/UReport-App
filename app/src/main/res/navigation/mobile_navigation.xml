@@ -7,22 +7,22 @@
     <fragment android:id="@+id/destination_report_list"
               android:name="com.agarcia.riskreporter.Fragments.ReportListFragment"
               android:label="@string/list_reports" tools:layout="@layout/fragment_report_list">
-        <action android:id="@+id/new_action"
-                app:destination="@id/destination_new_report" app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_right" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
                 app:destination="@id/destination_report_detail" android:id="@+id/next_action"
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+        <action android:id="@+id/new_action"
+                app:destination="@id/reportActivity" app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_out_left"
+                app:popExitAnim="@anim/slide_in_right"/>
     </fragment>
     <fragment android:id="@+id/destination_maps" android:name="com.agarcia.riskreporter.Fragments.GoogleMapsFragment"
               tools:layout="@layout/fragment_google_maps" android:label="@string/maps"/>
     <fragment android:id="@+id/destination_my_perfil" android:name="com.agarcia.riskreporter.Fragments.MyPerfilFragment"
               android:label="@string/my_perfil" tools:layout="@layout/fragment_my_perfil"/>
-    <fragment android:id="@+id/destination_new_report" android:name="com.agarcia.riskreporter.Fragments.NewReportFragment"
-              android:label="fragment_new_report" tools:layout="@layout/fragment_new_report"/>
     <fragment android:id="@+id/destination_report_detail"
               android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
               android:label="Detalle del reporte" tools:layout="@layout/fragment_report_detail"/>
+    <activity android:id="@+id/reportActivity" android:name="com.agarcia.riskreporter.Activities.ReportActivity"
+              android:label="ReportActivity"/>
 </navigation>

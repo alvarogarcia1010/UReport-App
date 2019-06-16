@@ -2,11 +2,15 @@ package com.agarcia.riskreporter.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.viewpager.widget.ViewPager
 import com.agarcia.riskreporter.Adapters.ViewPagerAdapter
 import com.agarcia.riskreporter.Fragments.*
 import com.agarcia.riskreporter.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_report.*
+import kotlinx.android.synthetic.main.activity_report.toolbar
 
 class ReportActivity : AppCompatActivity() {
 
@@ -29,4 +33,10 @@ class ReportActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
