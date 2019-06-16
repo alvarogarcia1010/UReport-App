@@ -29,11 +29,6 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
-    kotlin {
-        experimental {
-            coroutines "enable"
-        }
-    }
 }
 
 dependencies {

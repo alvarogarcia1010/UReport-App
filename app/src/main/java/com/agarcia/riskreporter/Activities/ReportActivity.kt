@@ -16,6 +16,10 @@ class ReportActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(ImageFragment(), "Image")
         adapter.addFragment(LocationFragment(), "Location")

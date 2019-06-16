@@ -8,9 +8,13 @@
               android:name="com.agarcia.riskreporter.Fragments.ReportListFragment"
               android:label="@string/list_reports" tools:layout="@layout/fragment_report_list">
         <action android:id="@+id/new_action"
-                app:destination="@id/destination_new_report"/>
+                app:destination="@id/destination_new_report" app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_right" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
-                app:destination="@id/destination_report_detail" android:id="@+id/next_action"/>
+                app:destination="@id/destination_report_detail" android:id="@+id/next_action"
+                app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment android:id="@+id/destination_maps" android:name="com.agarcia.riskreporter.Fragments.GoogleMapsFragment"
               tools:layout="@layout/fragment_google_maps" android:label="@string/maps"/>

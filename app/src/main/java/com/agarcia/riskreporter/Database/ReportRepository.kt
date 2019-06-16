@@ -9,7 +9,7 @@ class ReportRepository(private val reportDao: ReportDAO) {
     suspend fun insertReport(report: Report) = reportDao.insertReport(report)
 
 
-    fun deleteAll(report: Report) = reportDao.deleteAll(report)
+    fun deleteAll() = reportDao.deleteAll()
 
     fun updateReport(report: Report) = reportDao.updateReport(report)
 

@@ -1,8 +1,5 @@
 <resources>
-    <string name="app_name">Risk Reporter</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">UReport</string>
     <string name="list_reports">Reportes</string>
     <string name="maps">Mapa</string>
     <string name="my_perfil">Mi perfil</string>

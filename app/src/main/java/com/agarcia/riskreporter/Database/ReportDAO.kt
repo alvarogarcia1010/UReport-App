@@ -9,8 +9,8 @@ interface ReportDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertReport(report: Report)
 
-    @Query("Delete from report")
-    fun deleteAll(report: Report)
+    @Query("DELETE from report")
+    fun deleteAll()
 
     @Update
     fun updateReport(report: Report)
