@@ -25,4 +25,7 @@
               android:label="Detalle del reporte" tools:layout="@layout/fragment_report_detail"/>
     <activity android:id="@+id/reportActivity" android:name="com.agarcia.riskreporter.Activities.ReportActivity"
               android:label="ReportActivity"/>
+    <fragment android:id="@+id/destination_settings"
+              android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
+              android:label="Editar Perfil" tools:layout="@layout/fragment_report_detail"/>
 </navigation>

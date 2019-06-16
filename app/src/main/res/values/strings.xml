@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">UReport</string>
-    <string name="list_reports">Reportes</string>
+    <string name="list_reports">Mis reportes</string>
     <string name="maps">Mapa</string>
     <string name="my_perfil">Mi perfil</string>
+    <string name="close">Cerrar sesión</string>
 </resources>

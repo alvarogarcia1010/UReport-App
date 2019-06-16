@@ -26,6 +26,8 @@ class ReportListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
+        setHasOptionsMenu(true)
+
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
 
         init(view)
