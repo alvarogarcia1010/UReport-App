@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "702862577049",
-    "firebase_url": "https://fir-1a174.firebaseio.com",
-    "project_id": "fir-1a174",
-    "storage_bucket": "fir-1a174.appspot.com"
+    "project_number": "765836205148",
+    "firebase_url": "https://ureport-93a7b.firebaseio.com",
+    "project_id": "ureport-93a7b",
+    "storage_bucket": "ureport-93a7b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:702862577049:android:a14aee470a0c5919",
+        "mobilesdk_app_id": "1:765836205148:android:a14aee470a0c5919",
         "android_client_info": {
           "package_name": "com.agarcia.riskreporter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "702862577049-g8204br8lcn2ltf99uu565m7bk7oi6qr.apps.googleusercontent.com",
+          "client_id": "765836205148-nbrd2ha0n1ohfesfrti5dk2gsehqf091.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYKUVWDNWzJufxtB2j3lWm7boUHImdPeo"
+          "current_key": "AIzaSyAx6Audv0FgLQf-lwX8vEzOg1KjfG6QzBg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "702862577049-g8204br8lcn2ltf99uu565m7bk7oi6qr.apps.googleusercontent.com",
+              "client_id": "765836205148-nbrd2ha0n1ohfesfrti5dk2gsehqf091.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -15,7 +15,7 @@ public abstract class RoomDB:RoomDatabase() {
         @Volatile
         private var INSTANCE:RoomDB?=null
 
-        fun getInstance(
+        fun getDatabase(
             context: Context
         ):RoomDB {
             val tempinstance = INSTANCE

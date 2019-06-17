@@ -14,7 +14,7 @@ data class Report(
     val reporter: String = "N/A",
     val datetime: String = "N/A",
     val status: String = "N/A"
-) {
+){
     @PrimaryKey(autoGenerate = true)
     var id: Int=0
 }

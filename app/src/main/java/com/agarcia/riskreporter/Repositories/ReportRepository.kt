@@ -1,7 +1,9 @@
-package com.agarcia.riskreporter.Database
+package com.agarcia.riskreporter.Repositories
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.ReportDAO
 
 class ReportRepository(private val reportDao: ReportDAO) {
 
@@ -13,6 +15,6 @@ class ReportRepository(private val reportDao: ReportDAO) {
 
     fun updateReport(report: Report) = reportDao.updateReport(report)
 
-    fun getAllReport(): LiveData<List<Report>> = reportDao.getAllreport()
+    fun getAllReports(): LiveData<List<Report>> = reportDao.getAllreport()
 
 }
