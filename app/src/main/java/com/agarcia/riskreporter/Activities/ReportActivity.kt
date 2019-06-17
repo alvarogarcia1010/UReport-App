@@ -25,11 +25,11 @@ class ReportActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(ImageFragment(), "Image")
-        adapter.addFragment(LocationFragment(), "Location")
-        adapter.addFragment(RiskFragment(), "Risk")
-        adapter.addFragment(MeasuresFragment(), "Measures")
-        adapter.addFragment(SummaryFragment(), "Summary")
+        //adapter.addFragment(ImageFragment(), "Image")
+        adapter.addFragment(SummaryFragment(), "Paso 1")
+        adapter.addFragment(LocationFragment(), "Paso 2")
+        //adapter.addFragment(RiskFragment(), "Risk")
+        //adapter.addFragment(MeasuresFragment(), "Measures")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
     }

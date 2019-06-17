@@ -1,12 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center">
+              android:padding="10dp"
+              android:layout_height="match_parent">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Summary Fragment"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <ImageView
+                android:id="@+id/fr_summary_image"
+                android:src="@drawable/common_google_signin_btn_icon_dark_focused"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"/>
+
+        <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/fr_summary_addCamera"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tomar una foto "/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_camera_24dp"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   /    "/>
+
+            <TextView
+                    android:id="@+id/fr_summary_addGallery"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Añadir foto de la galería "/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_photo_library_24dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@drawable/profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+            <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Linda Canales"/>
+
+                <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lunes, 17 de junio de 2019"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View   android:layout_marginTop="10dp"
+                android:background="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                <EditText
+                        android:id="@+id/fr_summary_et_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Título"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:counterMaxLength="120"
+                        app:counterEnabled="true"
+                        android:layout_marginBottom="8dp">
+
+                        <EditText
+                                android:maxLength="120"
+                                android:maxLines="4"
+                                android:id="@+id/fr_summary_et_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                 <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:hint="Nivel de Riesgo"
+                            android:id="@+id/fr_summary_autocomplete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                <Button
+                        android:background="#1799bb"
+                        android:textColor="#ffffff"
+                        android:layout_marginTop="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:text="Siguiente"/>
+            </LinearLayout>
+        </ScrollView>
+
+
+
+
+    </LinearLayout>
+
 </LinearLayout>
