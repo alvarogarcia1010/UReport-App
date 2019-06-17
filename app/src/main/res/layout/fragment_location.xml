@@ -3,10 +3,29 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:padding="10dp"
               android:gravity="center">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+    <EditText
+            android:id="@+id/fr_location_et_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Localización"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:id="@+id/fr_location_bt_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location Fragment"/>
+            android:background="#1799bb"
+            android:text="Guardar"
+            android:textColor="#ffffff"/>
+
 </LinearLayout>
