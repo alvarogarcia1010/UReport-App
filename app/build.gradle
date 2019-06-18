@@ -71,7 +71,19 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+
+    /*Mushi*/
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.8.0"
+
+    /*Retrofit dependencies*/
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

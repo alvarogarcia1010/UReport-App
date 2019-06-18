@@ -18,7 +18,7 @@
                 android:layout_width="178dp"
                 android:layout_height="117dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo"
+                android:src="@drawable/logo_a"
         />
 
 
