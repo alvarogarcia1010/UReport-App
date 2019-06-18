@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               android:padding="10dp"
               android:gravity="center"
-              tools:context=".Fragments.LocationFragment">
+              tools:context=".Fragments.NewReport.LocationFragment">
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.agarcia.riskreporter.Fragments
+package com.agarcia.riskreporter.Fragments.NewReport
 
 
 import android.Manifest.permission.CAMERA
@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,19 +19,23 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 
+
 import com.agarcia.riskreporter.R
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.android.synthetic.main.fragment_summary.view.*
+import java.util.*
 
 class SummaryFragment : Fragment() {
 
     lateinit var picture: TextView
     lateinit var gallery : TextView
 
+
+    lateinit var photo : String
 
     val REQUEST_IMAGE_CAPTURE = 1
 
@@ -65,7 +70,12 @@ class SummaryFragment : Fragment() {
         }
 
         view.fr_summary_next.setOnClickListener {
-            val nextAction = SummaryFragmentDirections.nextAction("Descripcion", "Nivel de riesgo", "Titulo", "Imagen")
+            val nextAction = SummaryFragmentDirections.nextAction(
+                view.fr_summary_et_title.text.toString(),
+                view.fr_summary_et_description.text.toString(),
+                photo,
+                view.fr_summary_autocomplete.text.toString()
+            )
             Navigation.findNavController(it).navigate(nextAction)
         }
 
@@ -135,6 +145,7 @@ class SummaryFragment : Fragment() {
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, selectedPhotoUri)
             fr_summary_image.setImageBitmap(bitmap)
+            uploadImageToFirebaseStorage()
         }
     }
 
@@ -152,6 +163,28 @@ class SummaryFragment : Fragment() {
 
     private fun requestPermissionGallery(){
         requestPermissions(arrayOf(READ_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE1)
+    }
+
+    private fun uploadImageToFirebaseStorage(){
+        if(selectedPhotoUri == null) return
+
+        val fileName = UUID.randomUUID().toString()
+
+        val storage = FirebaseStorage.getInstance().getReference("/images/$fileName")
+
+        storage.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener { it ->
+                Log.d("photo", "Foto subida con Exito: ${it.metadata?.path}")
+
+                storage.downloadUrl.addOnSuccessListener {
+                    Log.d("photo", "File location: $it")
+
+                    photo = it.toString()
+                }
+            }
+            .addOnFailureListener {
+                Log.d("photo", "Fallo al subir la imagen al almacenamiento: ${it.message}")
+            }
     }
 
 }

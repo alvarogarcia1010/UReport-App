@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.agarcia.riskreporter.Database.Report
 import com.agarcia.riskreporter.R
-import com.agarcia.riskreporter.Report
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.report_item.view.*
 
 abstract class ReportAdapter internal constructor(context: Context) : RecyclerView.Adapter<ReportAdapter.ViewHolder>(){
@@ -31,16 +32,17 @@ abstract class ReportAdapter internal constructor(context: Context) : RecyclerVi
         setClickListenerToReport(holder, items[position])
     }
 
-    internal fun changeDataSet(newDataSet : ArrayList<Report>){
+    internal fun changeDataSet(newDataSet : List<Report>){
         this.items = newDataSet
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind (item: Report) = with(itemView){
+            Glide.with(itemView).load(item.url_image).into(rv_image)
             rv_reportname.text = item.title
-            rv_reportdate.text = item.date
-            rv_reportplace.text = item.place
+            rv_reportdate.text = item.datetime
+            rv_reportplace.text = item.detailed_location
             rv_reportuser.text = item.reporter
         }
     }

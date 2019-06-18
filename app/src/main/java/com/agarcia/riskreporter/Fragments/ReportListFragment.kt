@@ -1,27 +1,25 @@
 package com.agarcia.riskreporter.Fragments
 
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.agarcia.riskreporter.R
-import com.agarcia.riskreporter.Report
-import com.agarcia.riskreporter.Activities.ReportActivity
 import com.agarcia.riskreporter.Adapters.ReportAdapter
+import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.ViewModel.ReportViewModel
 import kotlinx.android.synthetic.main.fragment_report_list.view.*
 
 class ReportListFragment : Fragment() {
 
-    var report = Report("Panal de Abejas","Juan Castro","A-33","20/10/2019")
-    var report1 = Report("Gotera en Cielo Falso" , "Karla Acevedo", "B-13", "09/04/19")
-
-    val mem : ArrayList<Report> = ArrayList()
+    lateinit var reportViewModel: ReportViewModel
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -36,6 +34,8 @@ class ReportListFragment : Fragment() {
     }
 
     fun init(view:View){
+
+        reportViewModel = ViewModelProviders.of(this).get(ReportViewModel::class.java)
         var adapter = object : ReportAdapter(view.context){
             override fun setClickListenerToReport(holder: ViewHolder, item: Report) {
                 holder.itemView.setOnClickListener {
@@ -58,15 +58,9 @@ class ReportListFragment : Fragment() {
 //            startActivity(intent)
         }
 
-        addReports()
-
-        adapter.changeDataSet(mem)
-
-    }
-
-    fun addReports(){
-        mem.add(report)
-        mem.add(report1)
+        reportViewModel.allReports.observe(this, Observer { reports ->
+            reports?.let{ adapter.changeDataSet(it)}
+        })
     }
 
 }
