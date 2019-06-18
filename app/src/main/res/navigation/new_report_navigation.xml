@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/new_report_navigation"
+            app:startDestination="@id/destination_summary">
+    <fragment android:id="@+id/destination_summary" android:name="com.agarcia.riskreporter.Fragments.SummaryFragment"
+              android:label="fragment_summary" tools:layout="@layout/fragment_summary">
+        <action android:id="@+id/next_action"
+                app:destination="@id/destination_location"/>
+    </fragment>
+    <fragment android:id="@+id/destination_location" android:name="com.agarcia.riskreporter.Fragments.LocationFragment"
+              android:label="fragment_location" tools:layout="@layout/fragment_location">
+        <argument android:name="title" app:argType="string"/>
+        <argument android:name="description" app:argType="string"/>
+        <argument android:name="url_image" app:argType="string"/>
+        <argument android:name="risk_level" app:argType="string"/>
+    </fragment>
+</navigation>

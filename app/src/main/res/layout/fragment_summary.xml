@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:padding="10dp"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              tools:context=".Fragments.SummaryFragment">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -143,6 +145,7 @@
                             android:layout_height="wrap_content"/>
 
                 <Button
+                        android:id="@+id/fr_summary_next"
                         android:background="#1799bb"
                         android:textColor="#ffffff"
                         android:layout_marginTop="40dp"

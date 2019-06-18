@@ -20,20 +20,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 
 import com.agarcia.riskreporter.R
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.android.synthetic.main.fragment_summary.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class SummaryFragment : Fragment() {
 
     lateinit var picture: TextView
@@ -70,6 +62,11 @@ class SummaryFragment : Fragment() {
 
         gallery.setOnClickListener {
             if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
+        }
+
+        view.fr_summary_next.setOnClickListener {
+            val nextAction = SummaryFragmentDirections.nextAction("Descripcion", "Nivel de riesgo", "Titulo", "Imagen")
+            Navigation.findNavController(it).navigate(nextAction)
         }
 
 
