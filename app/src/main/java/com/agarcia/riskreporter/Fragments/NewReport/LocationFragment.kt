@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.agarcia.riskreporter.Activities.MainActivity
 import com.agarcia.riskreporter.Database.Report
 
@@ -34,8 +36,11 @@ class LocationFragment : Fragment() {
     lateinit var reportViewModel : ReportViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false)
+        val view= inflater.inflate(R.layout.fragment_location, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_2)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,8 +78,7 @@ class LocationFragment : Fragment() {
 
             try{
                 reportViewModel.insertReport(report)
-                val intent = Intent(view.context, MainActivity::class.java)
-                startActivity(intent)
+                Navigation.findNavController(view).navigate(R.id.save_report)
             }catch (e: Exception){
                 Log.d("Codigo", e.message)
             }

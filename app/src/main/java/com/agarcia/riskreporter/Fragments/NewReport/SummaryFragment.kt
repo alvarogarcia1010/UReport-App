@@ -19,6 +19,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 
@@ -33,23 +34,21 @@ class SummaryFragment : Fragment() {
 
     lateinit var picture: TextView
     lateinit var gallery : TextView
-
-
     lateinit var photo : String
 
     val REQUEST_IMAGE_CAPTURE = 1
-
     val REQUEST_IMAGE_CAPTURE_GALLERY= 0
 
     var selectedPhotoUri: Uri? = null
 
     private val PERMISSION_REQUEST_CODE: Int = 101
-
     private val PERMISSION_REQUEST_CODE1: Int = 102
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_summary, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_1)
 
         val risks = arrayOf("Bajo", "Medio", "Alto")
 
