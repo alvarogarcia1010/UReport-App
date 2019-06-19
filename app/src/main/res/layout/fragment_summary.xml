@@ -11,12 +11,12 @@
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical">
-
         <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/fr_summary_image"
-                android:src="@drawable/common_google_signin_btn_icon_dark_focused"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"/>
+                android:src="@drawable/logo_a"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
 
         <LinearLayout
                 android:layout_marginTop="15dp"
@@ -57,36 +57,18 @@
         </LinearLayout>
 
         <LinearLayout
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                    android:src="@drawable/profile"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-
-            <LinearLayout
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
+            <TextView
+                    android:id="@+id/fr_summary_date"
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:textColor="@android:color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Linda Canales"/>
-
-                <TextView
-                        android:textColor="@android:color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lunes, 17 de junio de 2019"/>
-
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:text="Report Date"/>
 
         </LinearLayout>
 
@@ -138,11 +120,13 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                 <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                            android:hint="Nivel de Riesgo"
-                            android:id="@+id/fr_summary_autocomplete"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:id="@+id/fr_summary_autocomplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Nivel de Riesgo">
+                </com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner>
 
                 <Button
                         android:id="@+id/fr_summary_next"
@@ -155,10 +139,6 @@
                         android:text="Siguiente"/>
             </LinearLayout>
         </ScrollView>
-
-
-
-
     </LinearLayout>
 
 </LinearLayout>

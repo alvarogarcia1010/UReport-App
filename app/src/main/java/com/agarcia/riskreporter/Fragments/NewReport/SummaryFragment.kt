@@ -27,6 +27,7 @@ import com.agarcia.riskreporter.R
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.android.synthetic.main.fragment_summary.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class SummaryFragment : Fragment() {
@@ -34,6 +35,9 @@ class SummaryFragment : Fragment() {
     lateinit var picture: TextView
     lateinit var gallery : TextView
 
+    lateinit var today : Calendar
+
+    lateinit var date : String
 
     lateinit var photo : String
 
@@ -69,15 +73,23 @@ class SummaryFragment : Fragment() {
             if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
         }
 
+        today = Calendar.getInstance()
+
+        date = SimpleDateFormat().format(today.time)
+
+        view.fr_summary_date.text = date
+
         view.fr_summary_next.setOnClickListener {
             val nextAction = SummaryFragmentDirections.nextAction(
                 view.fr_summary_et_title.text.toString(),
                 view.fr_summary_et_description.text.toString(),
                 photo,
-                view.fr_summary_autocomplete.text.toString()
+                view.fr_summary_autocomplete.text.toString(),
+                view.fr_summary_date.text.toString()
             )
             Navigation.findNavController(it).navigate(nextAction)
         }
+
 
 
         view.fr_summary_autocomplete.threshold = 1

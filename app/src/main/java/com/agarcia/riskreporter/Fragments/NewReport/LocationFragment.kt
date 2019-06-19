@@ -25,11 +25,7 @@ class LocationFragment : Fragment() {
     lateinit var image : String
     lateinit var risk : String
     lateinit var description : String
-
-    lateinit var today : Calendar
-
     lateinit var date : String
-
 
     lateinit var reportViewModel : ReportViewModel
 
@@ -49,13 +45,10 @@ class LocationFragment : Fragment() {
             image = safeArgs.urlImage
             risk = safeArgs.riskLevel
             description = safeArgs.description
+            date = safeArgs.date
         }
 
         reportViewModel = ViewModelProviders.of(this).get(ReportViewModel::class.java)
-
-        today = Calendar.getInstance()
-
-        date = SimpleDateFormat().format(today.time)
 
         fr_location_bt_save.setOnClickListener {
 
@@ -65,10 +58,10 @@ class LocationFragment : Fragment() {
                 description,
                 fr_location_et_location.text.toString(),
                 risk,
-                "N/A",
+                fr_location_et_measures.text.toString(),
                 "Luis Castillo",
                 date,
-                "N/A"
+                "Pendiente"
             )
 
             try{

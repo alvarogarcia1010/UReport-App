@@ -14,5 +14,6 @@
         <argument android:name="description" app:argType="string"/>
         <argument android:name="url_image" app:argType="string"/>
         <argument android:name="risk_level" app:argType="string"/>
+        <argument android:name="date" app:argType="string"/>
     </fragment>
 </navigation>

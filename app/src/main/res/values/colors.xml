@@ -5,4 +5,8 @@
     <color name="colorDark">#000000</color>
     <color name="colorAccent">#1BC1E4</color>
     <color name="buttonLabel">#FFFFFF</color>
+    <color name="greenRisk">#6CF54E</color>
+    <color name="redRisk">#E00505</color>
+    <color name="yellowRisk">#E7D10F</color>
+    <color name="greyStatus">#4E4D4B</color>
 </resources>

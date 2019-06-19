@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.agarcia.riskreporter.Database.Report
 import com.agarcia.riskreporter.R
@@ -39,11 +40,30 @@ abstract class ReportAdapter internal constructor(context: Context) : RecyclerVi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind (item: Report) = with(itemView){
-            Glide.with(itemView).load(item.url_image).into(rv_image)
+            //Glide.with(itemView).load(item.url_image).into(rv_image)
+            rv_image.setImageResource(R.drawable.logo_a)
             rv_reportname.text = item.title
             rv_reportdate.text = item.datetime
             rv_reportplace.text = item.detailed_location
-            rv_reportuser.text = item.reporter
+            rv_status.text = item.status
+            rv_reportrisk.text = item.risk_level
+
+            if(item.risk_level == "Bajo"){
+                rv_reportrisk_logo.setColorFilter(ContextCompat.getColor(context, R.color.greenRisk))
+                rv_reportrisk.setTextColor(ContextCompat.getColor(context, R.color.greenRisk))
+            }
+
+            if(item.risk_level == "Medio"){
+                rv_reportrisk_logo.setColorFilter(ContextCompat.getColor(context, R.color.yellowRisk))
+                rv_reportrisk.setTextColor(ContextCompat.getColor(context, R.color.yellowRisk))
+            }
+
+            if(item.risk_level == "Alto"){
+                rv_reportrisk_logo.setColorFilter(ContextCompat.getColor(context, R.color.redRisk))
+                rv_reportrisk.setTextColor(ContextCompat.getColor(context, R.color.redRisk))
+            }
+
+            rv_status.setTextColor(ContextCompat.getColor(context, R.color.greyStatus))
         }
     }
 }
