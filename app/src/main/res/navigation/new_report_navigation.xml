@@ -3,17 +3,28 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/new_report_navigation"
             app:startDestination="@id/destination_summary">
-    <fragment android:id="@+id/destination_summary" android:name="com.agarcia.riskreporter.Fragments.NewReport.SummaryFragment"
-              android:label="fragment_summary" tools:layout="@layout/fragment_summary">
+    <fragment android:id="@+id/destination_summary"
+              android:name="com.agarcia.riskreporter.Fragments.NewReport.SummaryFragment"
+              android:label="@string/new_report"
+              tools:layout="@layout/fragment_summary">
         <action android:id="@+id/next_action"
-                app:destination="@id/destination_location"/>
+                app:destination="@id/destination_location" app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+        <action android:id="@+id/action_destination_summary_pop" app:popUpTo="@id/destination_summary"
+                app:popUpToInclusive="true" app:destination="@+id/mainActivity"/>
     </fragment>
-    <fragment android:id="@+id/destination_location" android:name="com.agarcia.riskreporter.Fragments.NewReport.LocationFragment"
-              android:label="fragment_location" tools:layout="@layout/fragment_location">
+    <fragment android:id="@+id/destination_location"
+              android:name="com.agarcia.riskreporter.Fragments.NewReport.LocationFragment"
+              android:label="@string/new_report"
+              tools:layout="@layout/fragment_location">
         <argument android:name="title" app:argType="string"/>
         <argument android:name="description" app:argType="string"/>
         <argument android:name="url_image" app:argType="string"/>
         <argument android:name="risk_level" app:argType="string"/>
         <argument android:name="date" app:argType="string"/>
+        <action android:id="@+id/save_report" app:destination="@id/mainActivity"/>
     </fragment>
+    <activity android:id="@+id/mainActivity" android:name="com.agarcia.riskreporter.Activities.MainActivity"
+              android:label="activity_main" tools:layout="@layout/activity_main"/>
 </navigation>

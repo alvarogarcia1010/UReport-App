@@ -2,6 +2,7 @@ package com.agarcia.riskreporter.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -12,6 +13,8 @@ import com.agarcia.riskreporter.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.activity_report.toolbar
+import kotlinx.android.synthetic.main.fragment_summary.*
+import kotlinx.android.synthetic.main.fragment_summary.view.*
 
 class ReportActivity : AppCompatActivity() {
 
@@ -21,8 +24,6 @@ class ReportActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -30,11 +31,22 @@ class ReportActivity : AppCompatActivity() {
         setUpSideNavigationMenu(navController)
         setUpActionBar(navController)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+        val fragmentSummary = findViewById<Button>(R.id.fr_summary_next)
+
+        if(fragmentSummary != null)
+        {
+            onBackPressed()
+            return true
+        }
+        else{
+            return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment),drawer_layout)
+        }
+
     }
 
 //    override fun onSupportNavigateUp(): Boolean {
