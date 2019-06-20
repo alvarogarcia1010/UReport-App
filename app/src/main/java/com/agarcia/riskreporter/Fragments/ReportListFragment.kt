@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.Adapters.ReportAdapter
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.ViewModel.ReportViewModel
 import kotlinx.android.synthetic.main.fragment_report_list.view.*
 

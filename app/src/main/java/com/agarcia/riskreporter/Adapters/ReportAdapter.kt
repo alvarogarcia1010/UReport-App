@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.report_item.view.*
@@ -40,8 +40,8 @@ abstract class ReportAdapter internal constructor(context: Context) : RecyclerVi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind (item: Report) = with(itemView){
-            //Glide.with(itemView).load(item.url_image).into(rv_image)
-            rv_image.setImageResource(R.drawable.logo_a)
+            Glide.with(itemView).load(item.url_image).into(rv_image)
+            //rv_image.setImageResource(R.drawable.logo_a)
             rv_reportname.text = item.title
             rv_reportdate.text = item.datetime
             rv_reportplace.text = item.detailed_location

@@ -1,10 +1,10 @@
 package com.agarcia.riskreporter.Database
 
 import android.content.Context
-import android.provider.DocumentsContract
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.agarcia.riskreporter.Database.Models.Report
 
 @Database(entities = arrayOf(Report::class), version = 1, exportSchema = false)
 public abstract class RoomDB:RoomDatabase() {

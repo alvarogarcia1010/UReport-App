@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.Database.RoomDB
 import com.agarcia.riskreporter.Repositories.ReportRepository
 import kotlinx.coroutines.Dispatchers

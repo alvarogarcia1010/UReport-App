@@ -7,24 +7,53 @@
               android:name="com.agarcia.riskreporter.Fragments.NewReport.SummaryFragment"
               android:label="@string/new_report"
               tools:layout="@layout/fragment_summary">
+        <argument android:name="title" app:argType="string"/>
+        <argument android:name="risk_level" app:argType="string"/>
+        <argument android:name="date" app:argType="string"/>
         <action android:id="@+id/next_action"
-                app:destination="@id/destination_location" app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left"
+                app:destination="@id/destination_image"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
-        <action android:id="@+id/action_destination_summary_pop" app:popUpTo="@id/destination_summary"
-                app:popUpToInclusive="true" app:destination="@+id/mainActivity"/>
     </fragment>
     <fragment android:id="@+id/destination_location"
               android:name="com.agarcia.riskreporter.Fragments.NewReport.LocationFragment"
               android:label="@string/new_report"
               tools:layout="@layout/fragment_location">
         <argument android:name="title" app:argType="string"/>
-        <argument android:name="description" app:argType="string"/>
+        <argument android:name="remark" app:argType="string"/>
         <argument android:name="url_image" app:argType="string"/>
         <argument android:name="risk_level" app:argType="string"/>
         <argument android:name="date" app:argType="string"/>
-        <action android:id="@+id/save_report" app:destination="@id/mainActivity"/>
+        <action android:id="@+id/next_action"
+                app:destination="@id/destination_confirm" app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <activity android:id="@+id/mainActivity" android:name="com.agarcia.riskreporter.Activities.MainActivity"
               android:label="activity_main" tools:layout="@layout/activity_main"/>
+    <fragment android:id="@+id/destination_confirm"
+              android:name="com.agarcia.riskreporter.Fragments.NewReport.ConfirmFragment"
+              android:label="@string/new_report" tools:layout="@layout/fragment_confirm">
+        <action android:id="@+id/save_report" app:popUpTo="@+id/mainActivity" app:destination="@+id/mainActivity"/>
+        <argument android:name="title" app:argType="string"/>
+        <argument android:name="remark" app:argType="string"/>
+        <argument android:name="date" app:argType="string"/>
+        <argument android:name="url_image" app:argType="string"/>
+        <argument android:name="risk_level" app:argType="string"/>
+        <argument android:name="location" app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/destination_image"
+              android:name="com.agarcia.riskreporter.Fragments.NewReport.ImageFragment"
+              android:label="@string/new_report" tools:layout="@layout/fragment_image">
+        <action android:id="@+id/next_action"
+                app:destination="@id/destination_location" app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_out_left"
+                app:popExitAnim="@anim/slide_in_right"/>
+        <argument android:name="title" app:argType="string"/>
+        <argument android:name="remark" app:argType="string"/>
+        <argument android:name="risk_level" app:argType="string"/>
+        <argument android:name="date" app:argType="string"/>
+    </fragment>
 </navigation>

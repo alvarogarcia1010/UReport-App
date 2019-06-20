@@ -2,6 +2,7 @@ package com.agarcia.riskreporter.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.agarcia.riskreporter.Database.Models.Report
 
 @Dao
 interface ReportDAO {
