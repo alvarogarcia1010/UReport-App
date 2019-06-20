@@ -23,8 +23,7 @@ class LocationFragment : Fragment() {
     lateinit var risk : String
     lateinit var description : String
     lateinit var date : String
-
-    lateinit var reportViewModel : ReportViewModel
+    lateinit var image: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view= inflater.inflate(R.layout.fragment_location, container, false)
@@ -40,50 +39,28 @@ class LocationFragment : Fragment() {
         arguments?.let {
             val safeArgs = LocationFragmentArgs.fromBundle(it)
             Log.d("hola", safeArgs.toString())
-
             title = safeArgs.title
             risk = safeArgs.riskLevel
             description = safeArgs.remark
             date = safeArgs.date
+            image = safeArgs.urlImage
         }
 
-        reportViewModel = ViewModelProviders.of(this).get(ReportViewModel::class.java)
 
         fr_location_bt_next.setOnClickListener {
             val nextAction = LocationFragmentDirections.nextAction(
-                "hola1",
-                "hola2",
-                "hola3",
-                "hola4",
-                "hola5",
-                "hola6"
+                title,
+                description,
+                date,
+                image,
+                risk,
+                fr_location_et_location.text.toString()
             )
-
             Navigation.findNavController(it).navigate(nextAction)
-
-//            val report = Report(
-//                title,
-//                image,
-//                description,
-//                fr_location_et_location.text.toString(),
-//                risk,
-//                fr_location_et_measures.text.toString(),
-//                "Luis Castillo",
-//                date,
-//                "Pendiente"
-//            )
-//
-//            try{
-//                reportViewModel.insertReport(report)
-//                Navigation.findNavController(view).navigate(R.id.save_report)
-//            }catch (e: Exception){
-//                Log.d("Codigo", e.message)
-//            }
         }
 
+        fr_location_date.text = date
+
     }
-
-
-
 
 }

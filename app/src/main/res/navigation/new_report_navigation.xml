@@ -7,9 +7,14 @@
               android:name="com.agarcia.riskreporter.Fragments.NewReport.SummaryFragment"
               android:label="@string/new_report"
               tools:layout="@layout/fragment_summary">
+        <argument android:name="title" app:argType="string"/>
+        <argument android:name="risk_level" app:argType="string"/>
+        <argument android:name="date" app:argType="string"/>
         <action android:id="@+id/next_action"
-                app:destination="@id/destination_image" app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left"
+                app:destination="@id/destination_image"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment android:id="@+id/destination_location"

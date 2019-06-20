@@ -56,6 +56,7 @@ class LoginFragment : Fragment() {
                 val mIntent = Intent(activity, MainActivity::class.java)
                 mIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(mIntent)
+                activity?.finish()
             }.addOnFailureListener {
                 if(it.localizedMessage == "The password is invalid or the user does not have a password."){
                     Toast.makeText(view?.context, "Contraseña Incorrecta", Toast.LENGTH_LONG).show()

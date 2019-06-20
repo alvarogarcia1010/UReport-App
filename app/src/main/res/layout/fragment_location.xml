@@ -5,33 +5,21 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="10dp"
-              android:gravity="center"
+              android:padding="20dp"
               tools:context=".Fragments.NewReport.LocationFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/fr_location_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:counterMaxLength="120"
-            app:counterEnabled="true">
-
-        <EditText
-                android:lines="4"
-                android:maxLength="120"
-                android:maxLines="4"
-                android:id="@+id/fr_location_et_measures"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="¿Cómo propone solucionar el problema?"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_gravity="end"
+            android:textColor="@android:color/black"
+            android:text="Date"/>
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="8dp">
 
     <EditText
@@ -43,12 +31,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="75dp"
             android:id="@+id/fr_location_bt_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1799bb"
-            android:text="Guardar"
+            android:text="Siguiente"
             android:textColor="#ffffff"/>
 
 </LinearLayout>

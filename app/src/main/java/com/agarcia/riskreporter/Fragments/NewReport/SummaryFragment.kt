@@ -33,23 +33,10 @@ import java.util.*
 
 class SummaryFragment : Fragment() {
 
-    lateinit var picture: TextView
-    lateinit var gallery : TextView
+    lateinit var today: Calendar
 
-    lateinit var today : Calendar
-
-    lateinit var date : String
-
-
-    lateinit var photo : String
-
-    val REQUEST_IMAGE_CAPTURE = 1
-    val REQUEST_IMAGE_CAPTURE_GALLERY= 0
-
-    var selectedPhotoUri: Uri? = null
-
-    private val PERMISSION_REQUEST_CODE: Int = 101
-    private val PERMISSION_REQUEST_CODE1: Int = 102
+    lateinit var date: String
+    lateinit var format: SimpleDateFormat
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -63,35 +50,27 @@ class SummaryFragment : Fragment() {
 
         view.fr_summary_autocomplete.setAdapter(adapter)
 
-        picture = view.fr_summary_addCamera
-
-        gallery = view.fr_summary_addGallery
-
-        picture.setOnClickListener {
-            if (checkPermission()) takePicture() else requestPermission()
-        }
-
-        gallery.setOnClickListener {
-            if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
-        }
-
         today = Calendar.getInstance()
 
-        date = SimpleDateFormat().format(today.time)
+        format = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+
+        date = format.format(today.time)
 
         view.fr_summary_date.text = date
 
         view.fr_summary_next.setOnClickListener {
-            val nextAction = SummaryFragmentDirections.nextAction(
-                view.fr_summary_et_title.text.toString(),
-                view.fr_summary_et_description.text.toString(),
-                view.fr_summary_autocomplete.text.toString(),
-                view.fr_summary_date.text.toString()
-            )
-            Navigation.findNavController(it).navigate(nextAction)
+            if(validate()){
+                val nextAction = SummaryFragmentDirections.nextAction(
+                    view.fr_summary_et_title.text.toString(),
+                    view.fr_summary_et_description.text.toString(),
+                    view.fr_summary_autocomplete.text.toString(),
+                    view.fr_summary_date.text.toString()
+                )
+                Navigation.findNavController(it).navigate(nextAction)
+            } else{
+             failedNext()
+            }
         }
-
-
 
         view.fr_summary_autocomplete.threshold = 1
 
@@ -108,97 +87,37 @@ class SummaryFragment : Fragment() {
 
         return view
     }
+    private fun validate() : Boolean{
+        var valid = true
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                ) {
-                    takePicture()
-                } else {
-                    Toast.makeText(view!!.context, "Permission Denied", Toast.LENGTH_SHORT).show()
-                }
-
-                return
-            }
-
-             PERMISSION_REQUEST_CODE1 -> {
-                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                 ) {
-                     selectPicture()
-                 } else {
-                     Toast.makeText(view!!.context, "Permission Denied", Toast.LENGTH_SHORT).show()
-                 }
-                 return
-            }
+        if(fr_summary_et_title.text.toString().isEmpty()){
+            fr_summary_et_title.error = "Campo vacío"
+            valid = false
+        } else{
+            fr_summary_et_title.error = null
         }
 
-    }
-
-    private fun takePicture(){
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
-    }
-
-    private fun selectPicture(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_GALLERY)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data!=null){
-            fr_summary_image.setImageBitmap(data.extras.get("data") as Bitmap)
+        if(fr_summary_et_description.text.toString().isEmpty()){
+            fr_summary_et_description.error = "Campo vacío"
+            valid = false
+        } else{
+            fr_summary_et_description.error = null
         }
 
-        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data!=null){
-            selectedPhotoUri = data.data
-            val bitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, selectedPhotoUri)
-            fr_summary_image.setImageBitmap(bitmap)
-            uploadImageToFirebaseStorage()
+        if(fr_summary_autocomplete.text.toString().isEmpty()){
+            fr_summary_autocomplete.error = "Campo vacío"
+            valid = false
+        }else{
+            fr_summary_autocomplete.error = null
         }
+        return valid
     }
 
-    private fun checkPermission():Boolean{
-        return(ContextCompat.checkSelfPermission(view!!.context, CAMERA) == PackageManager.PERMISSION_GRANTED )
+    private fun failedNext(){
+        Toast.makeText(view?.context,"Favor llenar todos los campos", Toast.LENGTH_SHORT).show()
+        fr_summary_next.isEnabled = true
     }
 
-    private fun checkPermissionGallery():Boolean{
-        return(ContextCompat.checkSelfPermission(view!!.context, READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED )
-    }
-
-    private fun requestPermission(){
-        requestPermissions(arrayOf(CAMERA),PERMISSION_REQUEST_CODE)
-    }
-
-    private fun requestPermissionGallery(){
-        requestPermissions(arrayOf(READ_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE1)
-    }
-
-    private fun uploadImageToFirebaseStorage(){
-        if(selectedPhotoUri == null) return
-
-        val fileName = UUID.randomUUID().toString()
-
-        val storage = FirebaseStorage.getInstance().getReference("/images/$fileName")
-
-        storage.putFile(selectedPhotoUri!!)
-            .addOnSuccessListener { it ->
-                Log.d("photo", "Foto subida con Exito: ${it.metadata?.path}")
-
-                storage.downloadUrl.addOnSuccessListener {
-                    Log.d("photo", "File location: $it")
-
-                    photo = it.toString()
-                }
-            }
-            .addOnFailureListener {
-                Log.d("photo", "Fallo al subir la imagen al almacenamiento: ${it.message}")
-            }
-    }
 
 }
 
