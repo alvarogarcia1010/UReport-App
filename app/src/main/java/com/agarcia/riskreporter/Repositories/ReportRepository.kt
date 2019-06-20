@@ -2,7 +2,7 @@ package com.agarcia.riskreporter.Repositories
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.Database.ReportDAO
 
 class ReportRepository(private val reportDao: ReportDAO) {

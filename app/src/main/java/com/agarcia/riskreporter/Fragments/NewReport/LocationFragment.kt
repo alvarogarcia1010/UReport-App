@@ -1,7 +1,6 @@
 package com.agarcia.riskreporter.Fragments.NewReport
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,15 +10,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.agarcia.riskreporter.Activities.MainActivity
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.ViewModel.ReportViewModel
 import kotlinx.android.synthetic.main.fragment_location.*
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
 
 class LocationFragment : Fragment() {
 

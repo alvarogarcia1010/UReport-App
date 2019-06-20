@@ -1,4 +1,4 @@
-package com.agarcia.riskreporter.Database
+package com.agarcia.riskreporter.Database.Models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

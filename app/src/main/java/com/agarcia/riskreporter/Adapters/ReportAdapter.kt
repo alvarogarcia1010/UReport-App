@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.report_item.view.*
