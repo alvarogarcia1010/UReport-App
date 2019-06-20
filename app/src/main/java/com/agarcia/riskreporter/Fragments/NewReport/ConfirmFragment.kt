@@ -28,7 +28,7 @@ class ConfirmFragment : Fragment() {
 
         fr_confirm_bt_save.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.save_report)
-
+            activity?.finish()
         }
 
     }

@@ -31,7 +31,7 @@
     <fragment android:id="@+id/destination_confirm"
               android:name="com.agarcia.riskreporter.Fragments.NewReport.ConfirmFragment"
               android:label="@string/new_report" tools:layout="@layout/fragment_confirm">
-        <action android:id="@+id/save_report" app:destination="@id/mainActivity"/>
+        <action android:id="@+id/save_report" app:popUpTo="@+id/mainActivity" app:destination="@+id/mainActivity"/>
         <argument android:name="title" app:argType="string"/>
         <argument android:name="remark" app:argType="string"/>
         <argument android:name="date" app:argType="string"/>
