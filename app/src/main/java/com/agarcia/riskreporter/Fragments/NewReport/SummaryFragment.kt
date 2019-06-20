@@ -85,7 +85,6 @@ class SummaryFragment : Fragment() {
             val nextAction = SummaryFragmentDirections.nextAction(
                 view.fr_summary_et_title.text.toString(),
                 view.fr_summary_et_description.text.toString(),
-                photo,
                 view.fr_summary_autocomplete.text.toString(),
                 view.fr_summary_date.text.toString()
             )

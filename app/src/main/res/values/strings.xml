@@ -4,7 +4,10 @@
     <string name="maps">Mapa</string>
     <string name="my_perfil">Mi perfil</string>
     <string name="close">Cerrar sesión</string>
-    <string name="step_1">Paso 1/2</string>
-    <string name="step_2">Paso 2/2</string>
+    <string name="step_1">Paso 1/4</string>
+    <string name="step_2">Paso 2/4</string>
     <string name="new_report">Nuevo Reporte</string>
+    <string name="step_3">Paso 3/4</string>
+    <string name="step_4">Paso 4/4</string>
+
 </resources>

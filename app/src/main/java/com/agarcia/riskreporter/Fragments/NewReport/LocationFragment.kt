@@ -20,7 +20,6 @@ import java.lang.Exception
 class LocationFragment : Fragment() {
 
     lateinit var title : String
-    lateinit var image : String
     lateinit var risk : String
     lateinit var description : String
     lateinit var date : String
@@ -30,7 +29,7 @@ class LocationFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view= inflater.inflate(R.layout.fragment_location, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_2)
+        (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_3)
 
         return view
     }
@@ -43,34 +42,43 @@ class LocationFragment : Fragment() {
             Log.d("hola", safeArgs.toString())
 
             title = safeArgs.title
-            image = safeArgs.urlImage
             risk = safeArgs.riskLevel
-            description = safeArgs.description
+            description = safeArgs.remark
             date = safeArgs.date
         }
 
         reportViewModel = ViewModelProviders.of(this).get(ReportViewModel::class.java)
 
-        fr_location_bt_save.setOnClickListener {
-
-            val report = Report(
-                title,
-                image,
-                description,
-                fr_location_et_location.text.toString(),
-                risk,
-                fr_location_et_measures.text.toString(),
-                "Luis Castillo",
-                date,
-                "Pendiente"
+        fr_location_bt_next.setOnClickListener {
+            val nextAction = LocationFragmentDirections.nextAction(
+                "hola1",
+                "hola2",
+                "hola3",
+                "hola4",
+                "hola5",
+                "hola6"
             )
 
-            try{
-                reportViewModel.insertReport(report)
-                Navigation.findNavController(view).navigate(R.id.save_report)
-            }catch (e: Exception){
-                Log.d("Codigo", e.message)
-            }
+            Navigation.findNavController(it).navigate(nextAction)
+
+//            val report = Report(
+//                title,
+//                image,
+//                description,
+//                fr_location_et_location.text.toString(),
+//                risk,
+//                fr_location_et_measures.text.toString(),
+//                "Luis Castillo",
+//                date,
+//                "Pendiente"
+//            )
+//
+//            try{
+//                reportViewModel.insertReport(report)
+//                Navigation.findNavController(view).navigate(R.id.save_report)
+//            }catch (e: Exception){
+//                Log.d("Codigo", e.message)
+//            }
         }
 
     }
