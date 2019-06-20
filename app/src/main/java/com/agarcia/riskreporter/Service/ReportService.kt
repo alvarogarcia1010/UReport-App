@@ -1,6 +1,6 @@
 package com.agarcia.riskreporter.Service
 
-import com.agarcia.riskreporter.Database.Report
+import com.agarcia.riskreporter.Database.Models.Report
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Response

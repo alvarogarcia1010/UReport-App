@@ -52,29 +52,28 @@ class ConfirmFragment : Fragment() {
             location = safeArgs.location
         }
 
-        val report = Report(
-            title,
-            image,
-            description,
-            location,
-            risk,
-            fr_confirm_location.text.toString(),
-            "Luis Castillo",
-            date,
-            "Pendiente"
+        fr_confirm_bt_save.setOnClickListener {
+            val report = Report(
+                title,
+                image,
+                description,
+                location,
+                risk,
+                fr_confirm_location.text.toString(),
+                "Luis Castillo",
+                date,
+                "Pendiente"
             )
 
             try{
                 reportViewModel.insertReport(report)
                 Navigation.findNavController(view).navigate(R.id.save_report)
+                activity?.finish()
             }catch (e: Exception){
                 Log.d("Codigo", e.message)
             }
-
-        fr_confirm_bt_save.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.save_report)
-            activity?.finish()
         }
+
 
     }
 
