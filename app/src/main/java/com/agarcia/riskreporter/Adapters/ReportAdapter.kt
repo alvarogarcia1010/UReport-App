@@ -40,8 +40,8 @@ abstract class ReportAdapter internal constructor(context: Context) : RecyclerVi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind (item: Report) = with(itemView){
-            //Glide.with(itemView).load(item.url_image).into(rv_image)
-            rv_image.setImageResource(R.drawable.logo_a)
+            Glide.with(itemView).load(item.url_image).into(rv_image)
+            //rv_image.setImageResource(R.drawable.logo_a)
             rv_reportname.text = item.title
             rv_reportdate.text = item.datetime
             rv_reportplace.text = item.detailed_location
