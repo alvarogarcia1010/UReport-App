@@ -25,7 +25,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="320dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/riesgo"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/logo_a"
                         android:layout_alignParentTop="true"
                 />
 
@@ -37,7 +38,7 @@
                         android:padding="8dp"
 
                         android:text="Fecha"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#1799BB"
                         android:textSize="25sp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
@@ -46,30 +47,46 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
-                    android:minHeight="?attr/actionBarSize"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:titleTextColor="@android:color/white"
-                    style="@style/ToolbarTheme"
-                    android:background="?attr/colorPrimary"
+                    android:layout_height="85dp"
+                    android:background="@color/colorPrimary"
+                    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
             >
 
-                <TextView
-                        android:id="@+id/toolbar_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Report Title"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/white"
-                        style="@style/AppTheme"
-                        android:layout_gravity="left"
-                />
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                >
 
 
-            </android.support.v7.widget.Toolbar>
+                        <TextView
+                                android:id="@+id/toolbar_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Report Title"
+                                android:textSize="25dp"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/white"
+                                style="@style/AppTheme"
+                                android:layout_gravity="left"
+                        />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lugar del riesgo"
+                                android:textSize="15dp"
+                                android:textColor="@android:color/white"
+                                style="@style/AppTheme"
+                                android:layout_gravity="left"
+                        />
+
+                </LinearLayout>
+
+
+            </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content">
