@@ -123,99 +123,113 @@
 
         </LinearLayout>
 
-        <LinearLayout
-                android:padding="20dp"
-                android:layout_marginTop="20dp"
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-            <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reportes"/>
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp">
 
-            <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></ScrollView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/list_btn_next_action3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                <RelativeLayout
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="4dp"
-                        android:padding="16dp">
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
 
-                    <ImageView
-                            android:layout_width="wrap_content"
+                    <EditText android:id="@+id/register_et_fullname"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textCapWords"
+                              android:hint="Nombre Completo" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_email"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textEmailAddress"
+                              android:hint="Correo" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText
+                            android:id="@+id/register_et_company"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:hint="Institución"/>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fuga de Agua"
-                            android:layout_marginLeft="130dp"
-                            android:textColor="@android:color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Baños de las B"
-                            android:layout_marginLeft="130dp"
-                            android:layout_marginTop="20dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_android_black_20dp"
-                            android:layout_marginLeft="130dp"
-                            android:layout_marginTop="50dp"/>
+                    <EditText android:id="@+id/register_et_password"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Contraseña"/>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amanda Portillo"
-                            android:layout_marginLeft="160dp"
-                            android:layout_marginTop="50dp"
-                            android:textSize="12sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_android_black_20dp"
-                            android:layout_marginLeft="130dp"
-                            android:layout_marginTop="80dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Reportado el 21/04/19"
-                            android:layout_marginLeft="160dp"
-                            android:layout_marginTop="80dp"
-                            android:textSize="12sp"/>
+                    <EditText android:id="@+id/register_et_passwordconfirm"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Confirmar Contraseña"/>
 
-                    <TextView
-                            android:id="@+id/textViewOptions4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            android:text="&#8942;"
-                            android:textAppearance="?android:textAppearanceLarge" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-                </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/register_btn_register"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:padding="12dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@android:color/white"
+                        android:text="Crear Cuenta"/>
 
-        </LinearLayout>
+                <TextView android:id="@+id/register_btn_login"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginBottom="24dp"
+                          android:text="Ya eres miembro? Ingresa"
+                          android:gravity="center"
+                          android:textSize="16dip"/>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
 
     </LinearLayout>
 
