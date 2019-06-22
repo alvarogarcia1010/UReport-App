@@ -1,6 +1,9 @@
 package com.agarcia.riskreporter.Fragments.NewReport
 
 
+import android.app.Activity
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,16 +11,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
-import com.agarcia.riskreporter.Database.Models.Report
-
 import com.agarcia.riskreporter.R
-import com.agarcia.riskreporter.ViewModel.ReportViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_location.*
-import java.lang.Exception
 
-class LocationFragment : Fragment() {
+class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener
+{
+
+    private lateinit var locationMapFragment: SupportMapFragment
+    private lateinit var locationMap: GoogleMap
+    private lateinit var fusedLocationCLient: FusedLocationProviderClient
+    private lateinit var lastLocation: Location
+    private lateinit var currentLatLong : LatLng
+
+    private lateinit var longitude : String
+    private lateinit var latitude : String
 
     lateinit var title : String
     lateinit var risk : String
@@ -29,6 +48,8 @@ class LocationFragment : Fragment() {
         val view= inflater.inflate(R.layout.fragment_location, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_3)
+
+        initMap()
 
         return view
     }
@@ -46,7 +67,7 @@ class LocationFragment : Fragment() {
             image = safeArgs.urlImage
         }
 
-
+        //Ya te dejo dos variables listas con la latitud y la longitud del marker
         fr_location_bt_next.setOnClickListener {
             val nextAction = LocationFragmentDirections.nextAction(
                 title,
@@ -59,8 +80,99 @@ class LocationFragment : Fragment() {
             Navigation.findNavController(it).navigate(nextAction)
         }
 
-        fr_location_date.text = date
+    }
 
+    override fun onMapReady(googleMap: GoogleMap)
+    {
+        setUpMap(googleMap)
+    }
+
+
+    override fun onMarkerClick(p0: Marker) = false
+
+    override fun onMarkerDragStart(marker: Marker?) {
+        if (marker != null) {
+            longitude = marker.position.longitude.toString()
+            latitude = marker.position.latitude.toString()
+            Log.d("Marker", "Marker " + marker.id  + " Drag@" + longitude + ", lat:" + latitude)
+        }
+    }
+
+    override fun onMarkerDrag(marker: Marker) {
+        return
+    }
+
+    override fun onMarkerDragEnd(marker: Marker) {
+        if (marker != null) {
+            longitude = marker.position.longitude.toString()
+            latitude = marker.position.latitude.toString()
+            Log.d("Marker", "Marker " + marker.id  + " Drag@" + longitude + ", lat:" + latitude)
+
+        }
+    }
+
+
+    private fun initMap()
+    {
+        locationMapFragment = childFragmentManager.findFragmentById(R.id.location_map) as SupportMapFragment
+        locationMapFragment.getMapAsync(this)
+
+        fusedLocationCLient = LocationServices.getFusedLocationProviderClient(activity as Activity)
+
+    }
+
+
+    private fun setUpMap(googleMap: GoogleMap)
+    {
+        checkSelfPermission()
+
+        locationMap = googleMap
+
+        locationMap.setOnMarkerClickListener(this)
+        locationMap.setOnMarkerDragListener(this)
+
+        locationMap.uiSettings.isZoomControlsEnabled = true
+
+        locationMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+
+        fusedLocationCLient.lastLocation.addOnSuccessListener(activity as Activity)
+        {
+            if(it != null)
+            {
+                lastLocation = it
+                currentLatLong = LatLng(it.latitude, it.longitude)
+
+                longitude = it.longitude.toString()
+                latitude = it.latitude.toString()
+
+                placeMarker(currentLatLong)
+
+                locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
+            }
+        }
+
+    }
+    
+    private fun placeMarker(location: LatLng, title:String="Valor por defecto"){
+        val markerOption = MarkerOptions().position(location).draggable(true).title(title)
+        markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_primary_small))
+
+        locationMap.addMarker(markerOption)
+    }
+
+    private fun checkSelfPermission()
+    {
+        if(ActivityCompat.checkSelfPermission(activity as Activity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(activity as Activity,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+
+    companion object{
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
 }
