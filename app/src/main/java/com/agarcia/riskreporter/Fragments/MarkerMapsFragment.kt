@@ -58,7 +58,7 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
 
     private fun initMap()
     {
-        markerMapFragment = childFragmentManager.findFragmentById(R.id.heat_map) as SupportMapFragment
+        markerMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         markerMapFragment.getMapAsync(this)
 
         fusedLocationCLient = LocationServices.getFusedLocationProviderClient(activity as Activity)
