@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Fragments.MarkerMapsFragment">
+
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map"
+            tools:context=".Fragments.MarkerMapsFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment">
+
+        <Button
+                android:layout_marginTop="50dp"
+                android:id="@+id/fr_google_maps_bt_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_margin="8dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="#1799bb"
+                android:text="@string/change_view"
+                android:textColor="#ffffff"/>
+
+    </fragment>
+
+</FrameLayout>

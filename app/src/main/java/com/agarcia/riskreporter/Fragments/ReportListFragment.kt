@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.Adapters.ReportAdapter
@@ -38,6 +40,10 @@ class ReportListFragment : Fragment() {
 
     fun init(view:View){
 
+        val fab : View = view.findViewById(R.id.fab)
+        val swipeRefreshLayout: SwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
+        val recyclerView = view.recyclerview
+
         if(ActivityCompat.checkSelfPermission(activity as Activity,
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(activity as Activity,
@@ -54,18 +60,21 @@ class ReportListFragment : Fragment() {
             }
         }
 
-        val recyclerView = view.recyclerview
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        val fab : View = view.findViewById(R.id.fab)
 
         fab.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.new_action)
-//
-//            val intent = Intent(it.context, ReportActivity::class.java)
-//            startActivity(intent)
         }
+
+        swipeRefreshLayout.setOnRefreshListener{
+            Toast.makeText(activity, "Estoy refrescando los datos", Toast.LENGTH_SHORT).show()
+            swipeRefreshLayout.isRefreshing = false
+
+        }
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary)
 
         reportViewModel.allReports.observe(this, Observer { reports ->
             reports?.let{ adapter.changeDataSet(it)}
