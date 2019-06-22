@@ -5,38 +5,48 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="20dp"
               tools:context=".Fragments.NewReport.LocationFragment">
 
-    <TextView
-            android:id="@+id/fr_location_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textColor="@android:color/black"
-            android:text="Date"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <fragment
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="8dp">
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:id="@+id/location_map"
+            tools:context=".Fragments.MarkerMapsFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment">
 
-    <EditText
-            android:id="@+id/fr_location_et_location"
+    </fragment>
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Localización específica"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-            android:layout_marginTop="75dp"
-            android:id="@+id/fr_location_bt_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1799bb"
-            android:text="Siguiente"
-            android:textColor="#ffffff"/>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                    android:id="@+id/fr_location_et_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Localización específica"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:layout_marginTop="25dp"
+                android:id="@+id/fr_location_bt_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1799bb"
+                android:text="Siguiente"
+                android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

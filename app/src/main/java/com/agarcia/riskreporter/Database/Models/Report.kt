@@ -18,6 +18,12 @@ data class Report(
     @field:Json(name = "detailed_location")
     val detailed_location: String = "N/A",
 
+    @field:Json(name = "longitude")
+    val longitude: String = "N/A",
+
+    @field:Json(name = "latitude")
+    val latitude: String = "N/A",
+
     @field:Json(name = "risk_level")
     val risk_level: String = "N/A",
 
@@ -26,6 +32,9 @@ data class Report(
 
     @field:Json(name = "reporter")
     val reporter: String = "N/A",
+
+    @field:Json(name = "reporter_id")
+    val reporter_id: String = "N/A",
 
     @field:Json(name = "datetime")
     val datetime: String = "N/A",
