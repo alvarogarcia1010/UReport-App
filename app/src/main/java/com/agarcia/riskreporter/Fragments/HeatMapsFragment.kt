@@ -19,6 +19,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.TileOverlayOptions
+import com.google.maps.android.heatmaps.HeatmapTileProvider
+import com.google.maps.android.heatmaps.WeightedLatLng
 
 class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
@@ -68,11 +71,22 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
             {
                 lastLocation = it
                 currentLatLong = LatLng(it.latitude, it.longitude)
+                addHeadMap()
 
                 heatMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
         }
 
+
+    }
+
+    private fun addHeadMap(){
+
+        val item = WeightedLatLng(currentLatLong,100.00)
+        val list = arrayListOf<WeightedLatLng>(item)
+        val mProvider = HeatmapTileProvider.Builder().weightedData(list).build()
+
+        val mOverlay = heatMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
     }
 
     private fun checkSelfPermission()
