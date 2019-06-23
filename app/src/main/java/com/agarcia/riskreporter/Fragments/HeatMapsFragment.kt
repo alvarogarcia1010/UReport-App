@@ -22,6 +22,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.TileOverlayOptions
 import com.google.maps.android.heatmaps.HeatmapTileProvider
 import com.google.maps.android.heatmaps.WeightedLatLng
+import com.google.maps.android.heatmaps.Gradient
+import android.graphics.Color
+
 
 class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
@@ -82,9 +85,18 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
     private fun addHeadMap(){
 
+        val colors = intArrayOf(
+            Color.rgb(102, 225, 0),
+            Color.rgb(255, 0, 0)
+        )
+
+        val startPoints = floatArrayOf(0.2f, 1f)
+
+        val gradient = Gradient(colors, startPoints)
+
         val item = WeightedLatLng(currentLatLong,100.00)
         val list = arrayListOf<WeightedLatLng>(item)
-        val mProvider = HeatmapTileProvider.Builder().weightedData(list).build()
+        val mProvider = HeatmapTileProvider.Builder().weightedData(list).gradient(gradient).build()
 
         val mOverlay = heatMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
     }
