@@ -7,6 +7,7 @@ import com.agarcia.riskreporter.Database.ReportDAO
 
 class ReportRepository(private val reportDao: ReportDAO) {
 
+    /*Report*/
     @WorkerThread
     suspend fun insertReport(report: Report) = reportDao.insertReport(report)
 
@@ -16,5 +17,7 @@ class ReportRepository(private val reportDao: ReportDAO) {
     fun updateReport(report: Report) = reportDao.updateReport(report)
 
     fun getAllReports(): LiveData<List<Report>> = reportDao.getAllreport()
+
+
 
 }

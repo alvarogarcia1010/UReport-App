@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.agarcia.riskreporter.Database.Models.Report
+import com.agarcia.riskreporter.Database.Models.User
 
-@Database(entities = arrayOf(Report::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Report::class, User::class), version = 1, exportSchema = false)
 public abstract class RoomDB:RoomDatabase() {
 
     abstract fun reportDao(): ReportDAO
+    abstract fun userDao(): UserDAO
 
     companion object {
         @Volatile
