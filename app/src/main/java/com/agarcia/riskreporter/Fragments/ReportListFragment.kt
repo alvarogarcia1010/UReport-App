@@ -21,6 +21,8 @@ import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.Adapters.ReportAdapter
 import com.agarcia.riskreporter.Database.Models.Report
 import com.agarcia.riskreporter.ViewModel.ReportViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_report_list.view.*
 
@@ -28,7 +30,11 @@ class ReportListFragment : Fragment() {
 
     lateinit var reportViewModel: ReportViewModel
     lateinit var adapter: ReportAdapter
-    private val reportsRef = FirebaseDatabase.getInstance().getReference("Reports")
+    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+    private lateinit var uid : String
+    private lateinit var user : FirebaseUser
+
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -38,6 +44,12 @@ class ReportListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
 
         reportsRef.keepSynced(true)
+
+        user = FirebaseAuth.getInstance().currentUser!!
+
+        user?.let{
+            uid = user.uid
+        }
 
         init(view)
 
@@ -101,9 +113,10 @@ class ReportListFragment : Fragment() {
                 Log.d("Reports", "loadPost:onCancelled", databaseError.toException())
             }
         }
+
         reportsRef
-            .orderByChild("reporter")
-            .equalTo("Alvaro Garcia")
+            .orderByChild("reporter_id")
+            .equalTo(uid)
             .addValueEventListener(reportsListener)
 
     }
