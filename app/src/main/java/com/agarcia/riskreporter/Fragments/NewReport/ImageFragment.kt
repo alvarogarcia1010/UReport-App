@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -38,6 +39,10 @@ class ImageFragment : Fragment() {
     lateinit var gallery : Button
 
     lateinit var photo : String
+
+    lateinit var buttonS : Button
+
+    private lateinit var progress : ProgressBar
 
     val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_IMAGE_CAPTURE_GALLERY= 0
@@ -67,6 +72,9 @@ class ImageFragment : Fragment() {
             date = safeArgs.date
         }
 
+        progress = view.findViewById(R.id.progressbar_image)
+        progress.visibility = View.GONE
+
         picture = view.fr_image_camera
 
         gallery = view.fr_image_gallery
@@ -79,8 +87,9 @@ class ImageFragment : Fragment() {
            if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
        }
 
+        buttonS = view.fr_image_bt_next
 
-        fr_image_bt_next.setOnClickListener {
+        buttonS.setOnClickListener {
             val nextAction = ImageFragmentDirections.nextAction(
                 title,
                 description,
@@ -138,14 +147,17 @@ class ImageFragment : Fragment() {
        super.onActivityResult(requestCode, resultCode, data)
 
        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data!=null){
-            fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            selectedPhotoUri = data.data
+            val bitmap = data.extras.get("data") as Bitmap
+            //fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            uploadImageToFirebaseStorage(bitmap)
        }
 
        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data!=null){
            selectedPhotoUri = data.data
            val bitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, selectedPhotoUri)
-           fr_image_image.setImageBitmap(bitmap)
-           uploadImageToFirebaseStorage()
+           //fr_image_image.setImageBitmap(bitmap)
+           uploadImageToFirebaseStorage(bitmap)
        }
    }
 
@@ -165,7 +177,7 @@ class ImageFragment : Fragment() {
         requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE1)
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage(bitmap: Bitmap){
         if(selectedPhotoUri == null) return
 
         val fileName = UUID.randomUUID().toString()
@@ -178,12 +190,18 @@ class ImageFragment : Fragment() {
 
                 storage.downloadUrl.addOnSuccessListener {
                     Log.d("photo", "File location: $it")
-
+                    fr_image_image.setImageBitmap(bitmap)
+                    progress.visibility = View.GONE
                     photo = it.toString()
+                    buttonS.isEnabled = true
                 }
             }
             .addOnFailureListener {
                 Log.d("photo", "Fallo al subir la imagen al almacenamiento: ${it.message}")
+            }.addOnProgressListener {
+                progress.visibility = View.VISIBLE
+                buttonS.isEnabled = false
+
             }
     }
 

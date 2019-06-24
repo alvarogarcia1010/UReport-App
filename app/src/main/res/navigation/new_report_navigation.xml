@@ -43,6 +43,8 @@
         <argument android:name="url_image" app:argType="string"/>
         <argument android:name="risk_level" app:argType="string"/>
         <argument android:name="location" app:argType="string"/>
+        <argument android:name="latitude" app:argType="string"/>
+        <argument android:name="longitude" app:argType="string"/>
     </fragment>
     <fragment android:id="@+id/destination_image"
               android:name="com.agarcia.riskreporter.Fragments.NewReport.ImageFragment"

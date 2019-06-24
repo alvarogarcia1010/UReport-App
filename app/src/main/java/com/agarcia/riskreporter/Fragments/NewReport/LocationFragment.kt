@@ -75,7 +75,9 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
                 date,
                 image,
                 risk,
-                fr_location_et_location.text.toString()
+                fr_location_et_location.text.toString(),
+                latitude,
+                longitude
             )
             Navigation.findNavController(it).navigate(nextAction)
         }
