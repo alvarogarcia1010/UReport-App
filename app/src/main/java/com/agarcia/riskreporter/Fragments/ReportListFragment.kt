@@ -37,6 +37,8 @@ class ReportListFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
 
+        reportsRef.keepSynced(true)
+
         init(view)
 
         return view
@@ -99,7 +101,10 @@ class ReportListFragment : Fragment() {
                 Log.d("Reports", "loadPost:onCancelled", databaseError.toException())
             }
         }
-        reportsRef.addValueEventListener(reportsListener)
+        reportsRef
+            .orderByChild("reporter")
+            .equalTo("Alvaro Garcia")
+            .addValueEventListener(reportsListener)
 
     }
 
