@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import com.agarcia.riskreporter.Activities.MainActivity
 import android.content.Intent
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,6 +22,8 @@ class LoginFragment : Fragment() {
 
 
     private lateinit var auth : FirebaseAuth
+
+    private lateinit var progress : ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
@@ -31,8 +34,12 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         login_btn_login.setOnClickListener {
+            progress.visibility = View.VISIBLE
             login()
         }
+
+        progress = view.findViewById(R.id.progressbar)
+        progress.visibility = View.GONE
 
         login_btn_register.setOnClickListener {
             val nextAction = LoginFragmentDirections.nextAction()
@@ -59,11 +66,14 @@ class LoginFragment : Fragment() {
                 activity?.finish()
             }.addOnFailureListener {
                 if(it.localizedMessage == "The password is invalid or the user does not have a password."){
+                    progress.visibility = View.GONE
                     Toast.makeText(view?.context, "Contraseña Incorrecta", Toast.LENGTH_LONG).show()
                 }
                 else if(it.localizedMessage == "There is no user record corresponding to this identifier. The user may have been deleted."){
+                    progress.visibility = View.GONE
                     Toast.makeText(view?.context, "No existe un usuario asociado a ese correo.", Toast.LENGTH_LONG).show()
                 }else{
+                    progress.visibility = View.GONE
                     Toast.makeText(view?.context, "Error al loggearse.", Toast.LENGTH_LONG).show()
                 }
 
@@ -90,8 +100,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun failedLogin(){
-        Toast.makeText(view?.context,"Login fallido", Toast.LENGTH_SHORT).show()
-        login_btn_login.isEnabled = true
+            progress.visibility = View.GONE
+            Log.d("Nose", progress.visibility.toString())
+            Toast.makeText(view?.context,"Login fallido", Toast.LENGTH_SHORT).show()
+            login_btn_login.isEnabled = true
+
     }
 
 

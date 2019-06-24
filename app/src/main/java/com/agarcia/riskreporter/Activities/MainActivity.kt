@@ -52,6 +52,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         val navigated:Boolean = NavigationUI.onNavDestinationSelected(item!!, navController)
+
+        when(item?.itemId){
+            R.id.destination_close->{
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+        }
         return navigated || super.onOptionsItemSelected(item)
     }
 
