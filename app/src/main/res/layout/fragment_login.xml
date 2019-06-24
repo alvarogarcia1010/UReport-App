@@ -6,7 +6,7 @@
         android:fitsSystemWindows="true"
         tools:context=".Fragments.LoginFragment">
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -15,16 +15,18 @@
             android:paddingRight="24dp">
 
         <ImageView
+                android:id="@+id/logo_img"
                 android:layout_width="187dp"
                 android:layout_height="147dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logo_a"
-        />
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo_a"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/logo_img"
+                android:id="@+id/logininput"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
@@ -36,9 +38,17 @@
                     android:hint="Correo"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
         <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/logininput"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
             <EditText
@@ -55,6 +65,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_below="@+id/login_email"
                 android:layout_marginBottom="24dp"
                 android:background="@color/colorPrimary"
                 android:textColor="@android:color/white"
@@ -62,6 +73,7 @@
                 android:text="Login"/>
 
         <TextView
+                android:layout_below="@+id/login_btn_login"
                 android:id="@+id/login_btn_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +82,6 @@
                 android:gravity="center"
                 android:textSize="16dip"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
