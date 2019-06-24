@@ -24,6 +24,12 @@ import com.google.maps.android.heatmaps.HeatmapTileProvider
 import com.google.maps.android.heatmaps.WeightedLatLng
 import com.google.maps.android.heatmaps.Gradient
 import android.graphics.Color
+import android.util.Log
+import com.agarcia.riskreporter.Database.Models.Report
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class HeatMapsFragment : Fragment(), OnMapReadyCallback {
@@ -33,6 +39,10 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationCLient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
     private lateinit var currentLatLong :LatLng
+
+    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+    val reportList = arrayListOf<WeightedLatLng>()
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -68,13 +78,14 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
         heatMap.mapType = GoogleMap.MAP_TYPE_HYBRID
 
+        getReport()
+
         fusedLocationCLient.lastLocation.addOnSuccessListener(activity as Activity)
         {
             if(it != null)
             {
                 lastLocation = it
                 currentLatLong = LatLng(it.latitude, it.longitude)
-                addHeadMap()
 
                 heatMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
@@ -94,11 +105,42 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
         val gradient = Gradient(colors, startPoints)
 
-        val item = WeightedLatLng(currentLatLong,100.00)
-        val list = arrayListOf<WeightedLatLng>(item)
-        val mProvider = HeatmapTileProvider.Builder().weightedData(list).gradient(gradient).build()
+        val mProvider = HeatmapTileProvider.Builder().weightedData(reportList).gradient(gradient).build()
 
         val mOverlay = heatMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
+    }
+
+    private fun getReport(){
+
+        val reportsListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                loadReportList(dataSnapshot)
+                addHeadMap()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("Reports", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+
+        reportsRef.addValueEventListener(reportsListener)
+
+    }
+
+    private fun loadReportList(dataSnapshot: DataSnapshot){
+
+        var location: LatLng
+        var item: WeightedLatLng
+
+
+        for (postSnapshot in dataSnapshot.children) {
+            val report = postSnapshot.getValue(Report::class.java)
+            report?.let {
+                location = LatLng(report.latitude.toDouble(), report.longitude.toDouble())
+                item = WeightedLatLng(location, 100.00)
+                reportList.add(item)
+            }
+        }
     }
 
     private fun checkSelfPermission()

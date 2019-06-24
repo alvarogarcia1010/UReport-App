@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.agarcia.riskreporter.Database.Models.Report
 
 import com.agarcia.riskreporter.R
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -24,6 +25,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener,
     GoogleMap.OnMarkerDragListener {
@@ -34,16 +39,14 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
     private lateinit var lastLocation: Location
     private lateinit var currentLatLong :LatLng
 
+    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val view = inflater.inflate(R.layout.fragment_marker_maps, container, false)
-        val btChange:View = view.findViewById(R.id.fr_google_maps_bt_change)
 
         initMap()
-
-        btChange.setOnClickListener {
-            Toast.makeText(activity, "Cambie de mapa", Toast.LENGTH_SHORT).show()
-        }
         
         return view
     }
@@ -78,13 +81,7 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
 
         markerMap.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        val uca = LatLng(13.679959, -89.237012)
-        placeMarker(uca, "Panal de abejas (A-42)")
-
-        val uca2 = LatLng(13.679949, -89.235950)
-        placeMarker(uca2, "Gotera (D-37)")
-
-
+        getReport()
 
         fusedLocationCLient.lastLocation.addOnSuccessListener(activity as Activity)
         {
@@ -92,7 +89,7 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
             {
                 lastLocation = it
                 currentLatLong = LatLng(it.latitude, it.longitude)
-                placeMarker(currentLatLong)
+                //placeMarker(currentLatLong)
 
                 markerMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
@@ -105,6 +102,35 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
         markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_primary_small))
 
         markerMap.addMarker(markerOption)
+    }
+
+    private fun getReport(){
+
+        val reportsListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                loadReportList(dataSnapshot)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("Reports", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+
+        reportsRef.addValueEventListener(reportsListener)
+
+    }
+
+    private fun loadReportList(dataSnapshot: DataSnapshot){
+
+        var location = LatLng(0.0,0.0)
+
+        for (postSnapshot in dataSnapshot.children) {
+            val report = postSnapshot.getValue(Report::class.java)
+            report?.let {
+                location = LatLng(report.latitude.toDouble(), report.longitude.toDouble())
+                placeMarker(location, "${report.title} (${report.detailed_location})")
+            }
+        }
     }
 
     private fun checkSelfPermission()
