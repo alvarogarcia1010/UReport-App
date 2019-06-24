@@ -5,14 +5,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="20dp"
+              android:id="@+id/linear"
               tools:context=".Fragments.NewReport.ImageFragment">
 
-    <LinearLayout
+    <RelativeLayout
+            android:id="@+id/relative"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
         <TextView
+                android:layout_alignParentRight="true"
                 android:id="@+id/fr_image_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -22,13 +24,24 @@
                 android:text="Date"/>
 
         <ImageView
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_date"
                 android:id="@+id/fr_image_image"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:src="@drawable/logo_a"
                 android:layout_gravity="center"/>
 
+        <ProgressBar
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/progressbar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         <Button
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_image"
                 android:id="@+id/fr_image_camera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,6 +56,8 @@
                 android:drawableLeft="@drawable/ic_camera_24dp"/>
 
         <Button
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_camera"
                 android:id="@+id/fr_image_gallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +72,7 @@
                 android:drawableLeft="@drawable/ic_photo_library_24dp"/>
 
         <Button
+                android:layout_below="@+id/fr_image_gallery"
                 android:layout_marginTop="50dp"
                 android:id="@+id/fr_image_bt_next"
                 android:layout_width="match_parent"
@@ -64,6 +80,6 @@
                 android:background="#1799bb"
                 android:text="Siguiente"
                 android:textColor="#ffffff"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
