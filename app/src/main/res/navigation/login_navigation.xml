@@ -7,10 +7,18 @@
     <fragment android:id="@+id/destination_login" android:name="com.agarcia.riskreporter.Fragments.LoginFragment"
               android:label="fragment_login" tools:layout="@layout/fragment_login">
         <action android:id="@+id/next_action" app:destination="@id/destination_register"/>
+        <action android:id="@+id/action_destination_login_to_destination_forgot_pass"
+                app:destination="@id/destination_forgot_pass"/>
     </fragment>
-    <fragment android:id="@+id/destination_register" android:name="com.agarcia.riskreporter.Fragments.RegisterFragment"
+    <fragment android:id="@+id/destination_register" android:name="com.agarcia.riskreporter.Fragments.Register.RegisterFragment"
               android:label="fragment_register" tools:layout="@layout/fragment_register">
         <action android:id="@+id/back_action"
+                app:destination="@id/destination_login"/>
+    </fragment>
+
+    <fragment android:id="@+id/destination_forgot_pass" android:name="com.agarcia.riskreporter.Fragments.ResetPassword"
+              android:label="fragment_reset_pass" tools:layout="@layout/fragment_reset_password">
+        <action android:id="@+id/go_to_login"
                 app:destination="@id/destination_login"/>
     </fragment>
 </navigation>
