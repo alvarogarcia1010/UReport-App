@@ -21,7 +21,7 @@
             >
 
                 <ImageView
-                        android:id="@+id/image_riesgo"
+                        android:id="@+id/fr_detail_image"
                         android:layout_width="match_parent"
                         android:layout_height="320dp"
                         android:scaleType="centerCrop"
@@ -36,7 +36,7 @@
                         android:layout_alignParentBottom="true"
                         android:lines="1"
                         android:padding="8dp"
-
+                        android:id="@+id/fr_detail_date"
                         android:text="Fecha"
                         android:textColor="#1799BB"
                         android:textSize="25sp"
@@ -74,6 +74,7 @@
                         />
 
                         <TextView
+                                android:id="@+id/fr_detail_risk_level"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lugar del riesgo"
@@ -93,6 +94,7 @@
 
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
+                          android:id="@+id/fr_detail_remark"
                           android:text="Report Description, aqui estaria la descripcion del reporte seleccionado es decir la informacion especifica de dicho reporte de riesgo econtrado en la universidad"
                           android:paddingTop="15dp"
                           android:paddingLeft="10dp"
@@ -108,18 +110,18 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="320dp">
-
-
-                <ImageView
+                <fragment
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/uca"
+                        android:id="@+id/fr_detail_map"
                         android:padding="15dp"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
                         android:layout_alignParentBottom="true"
-                />
+                        tools:context=".Fragments.ReportDetailFragment"
+                        android:name="com.google.android.gms.maps.SupportMapFragment">
+
+                </fragment>
 
             </RelativeLayout>
         </LinearLayout>

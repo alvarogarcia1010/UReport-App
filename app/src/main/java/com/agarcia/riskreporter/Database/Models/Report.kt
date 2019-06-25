@@ -1,5 +1,7 @@
 package com.agarcia.riskreporter.Database.Models
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
@@ -41,8 +43,48 @@ data class Report(
 
     @field:Json(name = "status")
     val status: String = "N/A"
-){
+) : Parcelable {
     @PrimaryKey(autoGenerate = true)
     @field:Json(name = "id")
-    var id: Int=0
+    var id: Int = 0
+
+    constructor(source: Parcel) : this(
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(title)
+        writeString(url_image)
+        writeString(remark)
+        writeString(detailed_location)
+        writeString(longitude)
+        writeString(latitude)
+        writeString(risk_level)
+        writeString(measures_proposed)
+        writeString(reporter)
+        writeString(reporter_id)
+        writeString(datetime)
+        writeString(status)
+    }
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Report> = object : Parcelable.Creator<Report> {
+            override fun createFromParcel(source: Parcel): Report = Report(source)
+            override fun newArray(size: Int): Array<Report?> = arrayOfNulls(size)
+        }
+    }
 }
