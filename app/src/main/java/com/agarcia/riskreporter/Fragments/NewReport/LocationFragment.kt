@@ -59,7 +59,6 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
 
         arguments?.let {
             val safeArgs = LocationFragmentArgs.fromBundle(it)
-            Log.d("hola", safeArgs.toString())
             title = safeArgs.title
             risk = safeArgs.riskLevel
             description = safeArgs.remark

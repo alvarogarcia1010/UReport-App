@@ -71,8 +71,7 @@ class ReportListFragment : Fragment() {
         adapter = object : ReportAdapter(view.context){
             override fun setClickListenerToReport(holder: ViewHolder, item: Report) {
                 holder.itemView.setOnClickListener {
-                    Log.d("item", item.toString())
-                    val nextAction = ReportListFragmentDirections.nextAction()
+                    val nextAction = ReportListFragmentDirections.nextAction(item)
                     Navigation.findNavController(it).navigate(nextAction)
                 }
             }
