@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI
 import com.agarcia.riskreporter.R
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setUpActionBar(navController)
 
         verifyUserInLoggedIn()
+        Util.database
     }
 
     private fun verifyUserInLoggedIn(){
