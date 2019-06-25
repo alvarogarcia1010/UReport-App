@@ -26,10 +26,7 @@ import com.google.maps.android.heatmaps.Gradient
 import android.graphics.Color
 import android.util.Log
 import com.agarcia.riskreporter.Database.Models.Report
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 
 class HeatMapsFragment : Fragment(), OnMapReadyCallback {
@@ -40,14 +37,16 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var lastLocation: Location
     private lateinit var currentLatLong :LatLng
 
-    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+    private lateinit var reportsRef:DatabaseReference
+
     val reportList = arrayListOf<WeightedLatLng>()
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val view = inflater.inflate(R.layout.fragment_heat_maps, container, false)
+
+        reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+        reportsRef.keepSynced(true)
 
         initMap()
 
@@ -132,6 +131,7 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
         var location: LatLng
         var item: WeightedLatLng
 
+        reportList.clear()
 
         for (postSnapshot in dataSnapshot.children) {
             val report = postSnapshot.getValue(Report::class.java)

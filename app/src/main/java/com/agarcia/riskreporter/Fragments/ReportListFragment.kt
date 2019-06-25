@@ -30,19 +30,18 @@ class ReportListFragment : Fragment() {
 
     lateinit var reportViewModel: ReportViewModel
     lateinit var adapter: ReportAdapter
-    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+    private lateinit var reportsRef: DatabaseReference
     private lateinit var uid : String
     private lateinit var user : FirebaseUser
-
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         setHasOptionsMenu(true)
 
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
+        reportsRef = FirebaseDatabase.getInstance().getReference("reports")
         reportsRef.keepSynced(true)
 
         user = FirebaseAuth.getInstance().currentUser!!

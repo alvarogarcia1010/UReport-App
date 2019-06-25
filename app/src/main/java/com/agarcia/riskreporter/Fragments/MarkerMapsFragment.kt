@@ -25,10 +25,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener,
     GoogleMap.OnMarkerDragListener {
@@ -39,12 +36,14 @@ class MarkerMapsFragment : Fragment(), OnMapReadyCallback,  GoogleMap.OnMarkerCl
     private lateinit var lastLocation: Location
     private lateinit var currentLatLong :LatLng
 
-    private val reportsRef = FirebaseDatabase.getInstance().getReference("reports")
-
+    private lateinit var reportsRef:DatabaseReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val view = inflater.inflate(R.layout.fragment_marker_maps, container, false)
+
+        reportsRef = FirebaseDatabase.getInstance().getReference("reports")
+        reportsRef.keepSynced(true)
 
         initMap()
         
