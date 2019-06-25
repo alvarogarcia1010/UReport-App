@@ -32,7 +32,7 @@ class ReportListFragment : Fragment() {
     lateinit var adapter: ReportAdapter
     private lateinit var reportsRef: DatabaseReference
     private lateinit var uid : String
-    private lateinit var user : FirebaseUser
+    private var user : FirebaseUser? = null
     private var calledAlready = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -44,10 +44,10 @@ class ReportListFragment : Fragment() {
         reportsRef = FirebaseDatabase.getInstance().getReference("reports")
         reportsRef.keepSynced(true)
 
-        user = FirebaseAuth.getInstance().currentUser!!
-
+        user = FirebaseAuth.getInstance().currentUser
+        uid = ""
         user?.let{
-            uid = user.uid
+            uid = user?.uid!!
         }
 
         init(view)
