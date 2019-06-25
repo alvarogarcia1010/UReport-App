@@ -33,13 +33,13 @@ class ReportListFragment : Fragment() {
     private lateinit var reportsRef: DatabaseReference
     private lateinit var uid : String
     private lateinit var user : FirebaseUser
+    private var calledAlready = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         setHasOptionsMenu(true)
 
         val view = inflater.inflate(R.layout.fragment_report_list, container, false)
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         reportsRef = FirebaseDatabase.getInstance().getReference("reports")
         reportsRef.keepSynced(true)
@@ -71,6 +71,7 @@ class ReportListFragment : Fragment() {
         adapter = object : ReportAdapter(view.context){
             override fun setClickListenerToReport(holder: ViewHolder, item: Report) {
                 holder.itemView.setOnClickListener {
+                    Log.d("item", item.toString())
                     val nextAction = ReportListFragmentDirections.nextAction()
                     Navigation.findNavController(it).navigate(nextAction)
                 }
