@@ -24,25 +24,24 @@
             android:padding="20dp"
             android:orientation="vertical">
 
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_my_location_20dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:background="@drawable/input_background"
+                android:id="@+id/fr_location_et_location"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="55dp"
+                android:hint="Localización específica"/>
 
-            <EditText
-                    android:id="@+id/fr_location_et_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Localización específica"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:id="@+id/fr_location_bt_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#1799bb"
+                android:background="@drawable/button"
                 android:text="Siguiente"
                 android:textColor="#ffffff"/>
 

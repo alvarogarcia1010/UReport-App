@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -74,6 +75,12 @@ class RegisterFragment : Fragment() {
 
         progress = view.progress_bar_register
         progress.visibility = View.GONE
+
+        val companies = arrayOf("UCA")
+
+        val adapter = ArrayAdapter<String> (view.context, android.R.layout.simple_dropdown_item_1line, companies)
+
+        view.register_et_company.setAdapter(adapter)
 
         register_btn_next.setOnClickListener {
             if(validate()){

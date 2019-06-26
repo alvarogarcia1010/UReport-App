@@ -1,75 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:padding="20dp"
               android:layout_height="match_parent"
               tools:context=".Fragments.NewReport.SummaryFragment">
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
                 <TextView
+                        android:layout_alignParentRight="true"
                         android:id="@+id/fr_summary_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/colorPrimary"
                         android:text="Date"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
-
                 <EditText
+                        android:layout_marginTop="60dp"
+                        android:layout_below="@+id/fr_summary_date"
+                        android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/ic_edit_20dp"
+                        android:padding="10dp"
+                        android:background="@drawable/input_background"
                         android:id="@+id/fr_summary_et_title"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="55dp"
                         android:hint="Título"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                        android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/ic_description_20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/fr_summary_et_title"
+                        android:padding="10dp"
+                        android:background="@drawable/input_background"
+                        android:maxLength="120"
+                        android:maxLines="4"
+                        android:id="@+id/fr_summary_et_description"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:counterMaxLength="120"
-                        app:counterEnabled="true"
-                        android:layout_marginBottom="8dp">
+                        android:layout_height="100dp"
+                        android:hint="Descripción"/>
 
-                        <EditText
-                                android:maxLength="120"
-                                android:maxLines="4"
-                                android:id="@+id/fr_summary_et_description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Descripción"/>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                         android:id="@+id/fr_summary_autocomplete"
+                        android:drawablePadding="10dp"
+                        android:layout_marginTop="15dp"
+                        android:drawableLeft="@drawable/ic_error_outline_20dp"
+                        android:layout_below="@+id/fr_summary_et_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:met_floatingLabel="normal"
+                        android:padding="10dp"
                         android:hint="Nivel de Riesgo">
                 </com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner>
 
                 <Button
+                        android:layout_alignParentBottom="true"
                         android:id="@+id/fr_summary_next"
-                        android:background="#1799bb"
+                        android:background="@drawable/button"
                         android:textColor="#ffffff"
                         android:layout_marginTop="40dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="30dp"
                         android:text="Siguiente"/>
-            </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

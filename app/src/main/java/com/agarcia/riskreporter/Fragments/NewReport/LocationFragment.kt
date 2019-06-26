@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_location.*
+import kotlinx.android.synthetic.main.fragment_location.view.*
 
 class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener
 {
@@ -43,6 +45,8 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
     lateinit var description : String
     lateinit var date : String
     lateinit var image: String
+
+    private lateinit var location : EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view= inflater.inflate(R.layout.fragment_location, container, false)
@@ -66,21 +70,24 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
             image = safeArgs.urlImage
         }
 
+        location = view.fr_location_et_location
+
         //Ya te dejo dos variables listas con la latitud y la longitud del marker
         fr_location_bt_next.setOnClickListener {
-            val nextAction = LocationFragmentDirections.nextAction(
-                title,
-                description,
-                date,
-                image,
-                risk,
-                fr_location_et_location.text.toString(),
-                latitude,
-                longitude
-            )
-            Navigation.findNavController(it).navigate(nextAction)
+            if(verify()){
+                val nextAction = LocationFragmentDirections.nextAction(
+                    title,
+                    description,
+                    date,
+                    image,
+                    risk,
+                    fr_location_et_location.text.toString(),
+                    latitude,
+                    longitude
+                )
+                Navigation.findNavController(it).navigate(nextAction)
+            }
         }
-
     }
 
     override fun onMapReady(googleMap: GoogleMap)
@@ -174,6 +181,18 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
+    private fun verify() : Boolean{
+        var valid = true
+
+        if(location.text.toString().isEmpty()){
+            location.error = "Campo vacío"
+            valid = false
+        }else{
+            location.error = null
+        }
+        return valid
     }
 
 }

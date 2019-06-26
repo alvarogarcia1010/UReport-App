@@ -11,7 +11,7 @@
     <RelativeLayout
             android:id="@+id/relative"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         <TextView
                 android:layout_alignParentRight="true"
@@ -20,10 +20,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimary"
                 android:text="Date"/>
 
         <ImageView
+                android:layout_marginTop="40dp"
                 android:layout_centerInParent="true"
                 android:layout_below="@+id/fr_image_date"
                 android:id="@+id/fr_image_image"
@@ -72,13 +73,13 @@
                 android:drawableLeft="@drawable/ic_photo_library_24dp"/>
 
         <Button
-                android:layout_below="@+id/fr_image_gallery"
-                android:layout_marginTop="50dp"
+                android:layout_alignParentBottom="true"
                 android:id="@+id/fr_image_bt_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#1799bb"
+                android:background="@drawable/button"
                 android:text="Siguiente"
+                android:layout_marginBottom="30dp"
                 android:textColor="#ffffff"/>
     </RelativeLayout>
 

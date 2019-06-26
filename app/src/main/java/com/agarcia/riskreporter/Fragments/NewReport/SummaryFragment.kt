@@ -25,6 +25,7 @@ import androidx.navigation.Navigation
 
 
 import com.agarcia.riskreporter.R
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.android.synthetic.main.fragment_summary.view.*
@@ -52,7 +53,7 @@ class SummaryFragment : Fragment() {
 
         today = Calendar.getInstance()
 
-        format = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        format = SimpleDateFormat("dd-MM-yyyy")
 
         date = format.format(today.time)
 
@@ -114,7 +115,7 @@ class SummaryFragment : Fragment() {
     }
 
     private fun failedNext(){
-        Toast.makeText(view?.context,"Favor llenar todos los campos", Toast.LENGTH_SHORT).show()
+        Snackbar.make(this.view!!, "Favor llenar todos los campos.", Snackbar.LENGTH_SHORT).show()
         fr_summary_next.isEnabled = true
     }
 
