@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Fragments.UpatePerfilFragment">
+
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/update_image"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/logo_a"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+            <Button
+                    android:id="@+id/update_image_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tomar foto"
+                    android:textSize="8dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/button"
+                    android:textColor="@android:color/white"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:drawableLeft="@drawable/ic_camera_24dp"/>
+
+            <Button
+                    android:id="@+id/update_image_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button"
+                    android:textSize="8dp"
+                    android:textColor="@android:color/white"
+                    android:text="Agregar foto"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:drawableLeft="@drawable/ic_photo_library_24dp"/>
+
+        </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:paddingHorizontal="20dp"
+            >
+
+                <EditText android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:hint="Nombre"
+                          android:id="@+id/update_name"
+                          android:layout_marginTop="10dp"
+                />
+
+                <EditText android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:hint="Email"
+                          android:id="@+id/update_email"
+                          android:layout_marginTop="15dp"
+                />
+
+                <EditText android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:hint="Institucion"
+                          android:id="@+id/update_institution"
+                          android:layout_marginTop="15dp"
+                />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/update_save"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:padding="12dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@android:color/white"
+                        android:text="Guadar"/>
+
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

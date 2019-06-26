@@ -19,4 +19,7 @@ interface UserDAO {
 
     @Query("Select * from user")
     fun getAlluser(): LiveData<List<User>>
+
+    @Query("Select * from user Where user.full_name Like :name")
+    fun getuserbyname(name: String): User
 }
