@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                tools:context=".Fragments.MyPerfilFragment">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+    <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Información de Perfil"
+                android:textSize="20dp"
+                android:id="@+id/info_profile"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/info_profile"
+                android:id="@+id/fullname_input"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="4dp">
+
+            <TextView android:id="@+id/profile_fullname"
+                      android:layout_width="match_parent"
+                      android:layout_height="35dp"
+                      android:padding="10dp"
+                      android:drawableLeft="@drawable/ic_person_20dp"
+                      android:textSize="12dp"
+                      android:drawablePadding="10dp"
+                      android:background="@drawable/input_background"
+                      android:inputType="textCapWords"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mail_input"
+                android:layout_below="@id/fullname_input"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp">
+
+            <TextView android:id="@+id/profile_email"
+                      android:layout_width="match_parent"
+                      android:layout_height="35dp"
+                      android:textSize="12dp"
+                      android:padding="10dp"
+                      android:drawablePadding="10dp"
+                      android:drawableLeft="@drawable/ic_email_20dp"
+                      android:background="@drawable/input_background"
+                      android:inputType="textEmailAddress"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/mail_input"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp">
+
+            <TextView
+                    android:id="@+id/profile_company"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:padding="10dp"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_balance_20dp"
+                    android:background="@drawable/input_background"
+                    android:layout_height="35dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/change_password_profile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:background="@drawable/button"
+                android:textColor="@android:color/white"
+                android:text="Cambiar Contraseña"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+               <!--<com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_password"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Contraseña"/>
+
+                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--<com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
+
+                    <EditText android:id="@+id/register_et_passwordconfirm"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:inputType="textPassword"
+                              android:hint="Confirmar Contraseña"/>
+
+                </com.google.android.material.textfield.TextInputLayout>-->
+
+</FrameLayout>
