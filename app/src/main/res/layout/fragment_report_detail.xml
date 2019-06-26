@@ -25,69 +25,73 @@
                         android:layout_width="match_parent"
                         android:layout_height="320dp"
                         android:scaleType="centerCrop"
-                        android:layout_marginTop="5dp"
                         android:src="@drawable/logo_a"
                         android:layout_alignParentTop="true"
                 />
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:lines="1"
-                        android:padding="8dp"
-                        android:id="@+id/fr_detail_date"
-                        android:text="Fecha"
-                        android:textColor="#1799BB"
-                        android:textSize="25sp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginStart="16dp"/>
-
             </RelativeLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
+            <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:background="@color/colorPrimary"
-                    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-            >
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <LinearLayout android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical"
-                >
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/toolbar_title"
+                          android:text="Report title"
+                          android:textSize="25dp"
+                          android:textStyle="bold"
+                          android:textColor="@color/colorDark"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                />
 
+            </LinearLayout>
 
-                        <TextView
-                                android:id="@+id/toolbar_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Report Title"
-                                android:textSize="25dp"
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"
-                                style="@style/AppTheme"
-                                android:layout_gravity="left"
-                        />
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:orientation="horizontal"
+                          android:paddingHorizontal="8dp">
 
-                        <TextView
-                                android:id="@+id/fr_detail_risk_level"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Lugar del riesgo"
-                                android:textSize="15dp"
-                                android:textColor="@android:color/white"
-                                style="@style/AppTheme"
-                                android:layout_gravity="left"
-                        />
+                <TextView
+                        android:id="@+id/fr_detail_location"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Lugar del riesgo"
+                        android:textSize="18dp"
+                        android:textColor="@color/colorDark"
+                />
 
-                </LinearLayout>
+                <TextView
+                        android:id="@+id/fr_detail_risk_level"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha"
+                        android:textSize="18dp"
+                        android:gravity="right"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorDark"
+                />
+            </LinearLayout>
 
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent">
 
-            </androidx.appcompat.widget.Toolbar>
+                <TextView
+                        android:id="@+id/fr_detail_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="(Nivel de riesgo)"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/colorDark"
+                />
+            </LinearLayout>
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content">
@@ -99,6 +103,8 @@
                           android:paddingTop="15dp"
                           android:paddingLeft="10dp"
                           android:paddingBottom="15dp"
+                          android:textColor="@color/colorDark"
+
                 />
             </LinearLayout>
 

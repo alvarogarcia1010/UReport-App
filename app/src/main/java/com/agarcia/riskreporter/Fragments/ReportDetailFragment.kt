@@ -54,6 +54,7 @@ class ReportDetailFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarke
 
             toolbar_title.text = safeArgs.report.title
             fr_detail_risk_level.text = safeArgs.report.risk_level
+            fr_detail_location.text = safeArgs.report.detailed_location
             fr_detail_date.text = safeArgs.report.datetime
             fr_detail_remark.text = safeArgs.report.remark
         }

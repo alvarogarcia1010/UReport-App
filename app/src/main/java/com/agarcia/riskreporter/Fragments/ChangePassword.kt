@@ -38,7 +38,7 @@ class ChangePassword : Fragment() {
                         if (task.isSuccessful) {
                             Log.d("pass3", "Contraseña actualizada")
                             val nextAction = ChangePasswordDirections.nextActionPassword()
-                            Navigation.findNavController(it).navigate(nextAction)
+                            Navigation.findNavController(view).navigate(nextAction)
                         }else{
                             Toast.makeText(context, "Error Interno. Por favor reinicie sesion", Toast.LENGTH_LONG).show()
                             Log.d("pass4",user.toString())
