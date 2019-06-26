@@ -105,6 +105,8 @@ class UpatePerfilFragment : Fragment() {
         return view
     }
 
+
+
     fun getUserData(){
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(user!!.uid)
         Log.d("hola", ref.toString())
