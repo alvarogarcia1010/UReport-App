@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp"
+              android:id="@+id/linear"
+              tools:context=".Fragments.NewReport.ImageFragment">
+
+    <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/fr_image_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorPrimary"
+                android:text="Date"/>
+
+        <ImageView
+                android:layout_marginTop="40dp"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_date"
+                android:id="@+id/fr_image_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/logo_a"
+                android:layout_gravity="center"/>
+
+        <ProgressBar
+                android:layout_marginTop="170dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/progressbar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_image"
+                android:id="@+id/fr_image_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Tomar foto"
+                android:textSize="12dp"
+                android:background="@drawable/button"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:drawableLeft="@drawable/ic_camera_24dp"/>
+
+        <Button
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/fr_image_camera"
+                android:id="@+id/fr_image_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button"
+                android:layout_marginTop="10dp"
+                android:textSize="12dp"
+                android:textColor="@android:color/white"
+                android:text="Agregar foto"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:drawableLeft="@drawable/ic_photo_library_24dp"/>
+
+        <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/fr_image_bt_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="Siguiente"
+                android:layout_marginBottom="30dp"
+                android:textColor="#ffffff"/>
+    </RelativeLayout>
+
+</LinearLayout>

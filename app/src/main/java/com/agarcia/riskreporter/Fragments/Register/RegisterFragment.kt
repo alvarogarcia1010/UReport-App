@@ -145,7 +145,7 @@ class RegisterFragment : Fragment() {
         }
 
         if(!::photo.isInitialized){
-            Snackbar.make(this.view!!, "Favor selecicone una foto", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(this.view!!, "Favor seleccione una foto", Snackbar.LENGTH_SHORT).show()
             valid = false
         }
         return valid

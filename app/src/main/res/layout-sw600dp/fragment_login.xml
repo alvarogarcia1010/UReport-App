@@ -1,0 +1,93 @@
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:fitsSystemWindows="true"
+        tools:context=".Fragments.LoginFragment">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="45dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+        <ImageView
+                android:id="@+id/logo_img"
+                android:layout_width="187dp"
+                android:layout_height="147dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo_a"/>
+
+        <EditText
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_email_20dp"
+                android:layout_marginTop="35dp"
+                android:layout_below="@id/logo_img"
+                android:padding="10dp"
+                android:background="@drawable/input_background"
+                android:id="@+id/login_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:inputType="textEmailAddress"
+                android:hint="Correo"/>
+
+
+        <ProgressBar
+                android:layout_centerInParent="true"
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <EditText
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_lock_20dp"
+                android:layout_marginTop="35dp"
+                android:layout_below="@id/login_et_email"
+                android:padding="10dp"
+                android:id="@+id/login_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/input_background"
+                android:inputType="textPassword"
+                android:hint="Contraseña"/>
+
+        <TextView
+                android:id="@+id/login_forgot_pass"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/login_et_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1799BB"
+                android:text="¿Olvidó su contraseña?"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_btn_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/login_et_password"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/button"
+                android:textColor="@android:color/white"
+                android:padding="12dp"
+                android:text="Login"/>
+
+        <TextView
+                android:textColor="#1799BB"
+                android:layout_below="@+id/login_btn_login"
+                android:id="@+id/login_btn_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="¿Nuevo en UReport? Regístrate"
+                android:gravity="center"
+                android:textSize="16dip"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

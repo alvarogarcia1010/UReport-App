@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:padding="10dp"
+             android:layout_height="match_parent"
+             tools:context=".Fragments.Register.RegisterFragmentPart2">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+    <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/register_photo2"
+                    android:layout_width="187dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/logo_a"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_below="@+id/logo_img"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:layout_marginTop="30dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_lock_20dp"
+                android:padding="10dp"
+                android:background="@drawable/input_background"
+                android:layout_below="@+id/register_photo2"
+                android:id="@+id/register_et_password2"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:inputType="textPassword"
+                android:hint="Contraseña"/>
+
+        <EditText
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_lock_20dp"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input_background"
+                android:layout_below="@+id/register_et_password2"
+                android:id="@+id/register_et_passwordconfirm"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:inputType="textPassword"
+                android:hint="Confirmar Contraseña"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:layout_below="@+id/register_et_passwordconfirm"
+                android:id="@+id/register_btn_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:background="@drawable/button"
+                android:textColor="@android:color/white"
+                android:text="Crear Cuenta"/>
+
+        <TextView android:id="@+id/register_btn_login"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="24dp"
+                  android:text="¿Ya eres miembro? Ingresa"
+                  android:gravity="center"
+                  android:textColor="@color/colorPrimary"
+                  android:layout_below="@+id/register_btn_register"
+                  android:textSize="16dip"/>
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

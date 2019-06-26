@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".Fragments.NewReport.LocationFragment">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+        <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/location_map"
+                tools:context=".Fragments.MarkerMapsFragment"
+                android:name="com.google.android.gms.maps.SupportMapFragment">
+
+        </fragment>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        <EditText
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_my_location_20dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input_background"
+                android:id="@+id/fr_location_et_location"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Localización específica"/>
+
+
+        <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/fr_location_bt_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="Siguiente"
+                android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
+</LinearLayout>
