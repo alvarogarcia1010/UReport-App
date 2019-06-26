@@ -104,7 +104,10 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
 
         val gradient = Gradient(colors, startPoints)
 
-        val mProvider = HeatmapTileProvider.Builder().weightedData(reportList).gradient(gradient).build()
+        val mProvider = HeatmapTileProvider.Builder().weightedData(reportList)
+            .radius(30)
+            .gradient(gradient)
+            .build()
 
         val mOverlay = heatMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
     }
@@ -137,7 +140,14 @@ class HeatMapsFragment : Fragment(), OnMapReadyCallback {
             val report = postSnapshot.getValue(Report::class.java)
             report?.let {
                 location = LatLng(report.latitude.toDouble(), report.longitude.toDouble())
-                item = WeightedLatLng(location, 100.00)
+                when (report.risk_level) {
+                    "Alto" ->item = WeightedLatLng(location, 50.00)
+                    "Medio" -> item = WeightedLatLng(location, 30.00)
+                    else ->  item = WeightedLatLng(location, 10.00)
+
+
+                }
+
                 reportList.add(item)
             }
         }

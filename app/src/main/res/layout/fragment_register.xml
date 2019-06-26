@@ -10,7 +10,7 @@
             <ImageView
                     android:id="@+id/register_photo"
                     android:layout_width="187dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_height="160dp"
                     android:src="@drawable/logo_a"
                     android:layout_centerHorizontal="true"
@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="25dp"
                         android:id="@+id/register_image_camera"
                         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                         android:drawableLeft="@drawable/ic_camera_24dp"/>
 
                 <Button
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="25dp"
                         android:layout_below="@+id/register_photo"
                         android:id="@+id/register_image_gallery"
@@ -83,17 +83,18 @@
                               android:hint="Correo" />
 
 
-                    <EditText
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                             android:padding="10dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="15dp"
                             android:background="@drawable/input_background"
                             android:layout_below="@+id/register_et_email"
                             android:id="@+id/register_et_company"
                             android:drawableLeft="@drawable/ic_account_balance_20dp"
                             android:drawablePadding="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:hint="Institución"/>
+                            android:layout_height="75dp"
+                            android:hint="Institución">
+                    </com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner>
 
 
 
@@ -102,7 +103,7 @@
                         android:id="@+id/register_btn_next"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"
                         android:background="@drawable/button"

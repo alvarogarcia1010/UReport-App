@@ -9,11 +9,11 @@
               tools:context=".Fragments.NewReport.ConfirmFragment">
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                    android:textSize="15dp"
+                    android:textSize="20dp"
                     android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -29,18 +29,22 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                     <TextView
+                            android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fecha:"/>
                     <TextView
+                            android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Título:"/>
                     <TextView
+                            android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Localización:"/>
                     <TextView
+                            android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nivel de riesgo:"/>
@@ -52,21 +56,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                     <TextView
+                            android:textSize="18dp"
                             android:id="@+id/fr_confirm_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20/06/19 13:05:40"/>
+                            android:text="20/06/19"/>
                     <TextView
+                            android:textSize="18dp"
                             android:id="@+id/fr_confirm_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Panal de Abejas"/>
                     <TextView
+                            android:textSize="18dp"
                             android:id="@+id/fr_confirm_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="D-33"/>
                     <TextView
+                            android:textSize="18dp"
                             android:id="@+id/fr_confirm_risk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -75,31 +83,27 @@
 
             </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                app:counterMaxLength="120"
-                app:counterEnabled="true"
-                android:layout_marginBottom="8dp">
 
             <EditText
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_comment_20dp"
+                    android:layout_marginTop="35dp"
+                    android:padding="10dp"
+                    android:background="@drawable/input_background"
                     android:maxLength="120"
                     android:maxLines="4"
                     android:id="@+id/fr_confirm_et_measures"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:hint="Medidas propuestas"/>
 
 
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:id="@+id/fr_confirm_bt_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#1799bb"
+                android:background="@drawable/button"
                 android:text="Guardar"
                 android:textColor="#ffffff"/>
 
