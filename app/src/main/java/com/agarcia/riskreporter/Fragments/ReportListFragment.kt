@@ -46,6 +46,8 @@ class ReportListFragment : Fragment() {
 
         user = FirebaseAuth.getInstance().currentUser!!
 
+        Log.d("user", user.toString())
+
         user?.let{
             uid = user.uid
         }
