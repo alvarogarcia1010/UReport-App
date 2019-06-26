@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 
 import com.agarcia.riskreporter.R
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_image.*
 import kotlinx.android.synthetic.main.fragment_image.view.*
@@ -90,14 +91,17 @@ class ImageFragment : Fragment() {
         buttonS = view.fr_image_bt_next
 
         buttonS.setOnClickListener {
-            val nextAction = ImageFragmentDirections.nextAction(
-                title,
-                description,
-                photo,
-                risk,
-                date
-            )
-            Navigation.findNavController(it).navigate(nextAction)
+            if (validate()) {
+                val nextAction = ImageFragmentDirections.nextAction(
+                    title,
+                    description,
+                    photo,
+                    risk,
+                    date
+                )
+                Navigation.findNavController(it).navigate(nextAction)
+            }
+
         }
 
         fr_image_date.text = date
@@ -203,6 +207,16 @@ class ImageFragment : Fragment() {
                 buttonS.isEnabled = false
 
             }
+    }
+
+    private fun validate() : Boolean{
+        var valid = true
+
+        if(!::photo.isInitialized){
+            Snackbar.make(this.view!!, "Favor seleccione una foto", Snackbar.LENGTH_SHORT).show()
+            valid = false
+        }
+        return valid
     }
 
 }

@@ -103,7 +103,5 @@ class MyPerfilFragment : Fragment() {
         profile_email.text = item.email
         profile_company.text = item.company
         Glide.with(this).load(item.url_image).into(profile_image)
-        profile_institucion.text = item.company
-        profile_fullname_principal.text = item.full_name
     }
 }
