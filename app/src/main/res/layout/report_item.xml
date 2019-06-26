@@ -13,7 +13,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
+                android:elevation="8dp"
                 android:padding="16dp">
 
             <ImageView
@@ -27,6 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gotera en Cielo Falso"
+                    android:textSize="14sp"
                     android:layout_marginLeft="130dp"
                     android:textColor="@android:color/black"/>
 
@@ -35,15 +36,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="A-33"
+                    android:textSize="12sp"
                     android:layout_marginLeft="130dp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="25dp"/>
 
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_access_time_20dp"
                     android:layout_marginLeft="130dp"
-                    android:layout_marginTop="50dp"/>
+                    android:layout_marginTop="60dp"/>
 
             <TextView
                     android:id="@+id/rv_reportdate"
@@ -51,8 +53,8 @@
                     android:layout_height="wrap_content"
                     android:text="Date"
                     android:layout_marginLeft="160dp"
-                    android:layout_marginTop="50dp"
-                    android:textSize="12sp"/>
+                    android:layout_marginTop="60dp"
+                    android:textSize="16sp"/>
 
             <ImageView
                     android:id="@+id/rv_reportrisk_logo"
@@ -61,7 +63,7 @@
                     android:src="@drawable/ic_brightness_1_20dp"
                     android:tint="@android:color/holo_green_dark"
                     android:layout_marginLeft="130dp"
-                    android:layout_marginTop="80dp"/>
+                    android:layout_marginTop="90dp"/>
 
             <TextView
                     android:id="@+id/rv_reportrisk"
@@ -69,14 +71,15 @@
                     android:layout_height="wrap_content"
                     android:text="Risk Level"
                     android:layout_marginLeft="160dp"
-                    android:layout_marginTop="80dp"
-                    android:textSize="12sp"/>
+                    android:layout_marginTop="90dp"
+                    android:textSize="16sp"/>
 
             <TextView
                     android:id="@+id/rv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:textSize="16sp"
                     android:layout_alignParentTop="true"
                     android:text="Estado"/>
 

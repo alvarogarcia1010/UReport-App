@@ -46,8 +46,10 @@ class ReportListFragment : Fragment() {
         reportsRef = FirebaseDatabase.getInstance().getReference("reports")
         reportsRef.keepSynced(true)
 
+
         user = FirebaseAuth.getInstance().currentUser
         uid = ""
+
         user?.let{
             uid = user?.uid!!
         }
