@@ -15,4 +15,6 @@ class UserRepository(private val userDao: UserDAO) {
     fun updateReport(user: User) = userDao.updateUser(user)
 
     fun getAllReports(): LiveData<List<User>> = userDao.getAlluser()
+
+    fun getuserbyname(name: String): User = userDao.getuserbyname(name)
 }

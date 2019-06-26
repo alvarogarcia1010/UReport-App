@@ -19,25 +19,27 @@
                 android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
                     android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:src="@drawable/profile"/>
+                    android:layout_height="96dp"/>
 
             <TextView
+                    android:id="@+id/profile_fullname_principal"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Linda Canales"
                     android:textColor="@android:color/black"
+
                     android:textSize="25dp"/>
 
             <TextView
+                    android:id="@+id/profile_institucion"
                     android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Estudiante de Comunicaciones. "/>
+                    android:textAllCaps="true"
+                    android:layout_height="wrap_content"/>
 
             <View android:layout_width="match_parent"
                   android:layout_height="2dp"
@@ -51,73 +53,14 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                <LinearLayout
-                        android:layout_marginRight="60dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:textAlignment="center"
-                            android:layout_marginBottom="5dp"
-                            android:textSize="18dp"
-                            android:textColor="@android:color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="16"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:text="Reportes"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_marginRight="60dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-                            android:textAlignment="center"
-                            android:layout_marginBottom="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="8"/>
-
-                    <TextView
-                            android:textAlignment="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Solucionados"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:textSize="18dp"
-                            android:textColor="@android:color/black"
-                            android:textAlignment="center"
-                            android:layout_marginBottom="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="8"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:text="En Proceso"/>
-
-                </LinearLayout>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="Informacion de Perfil"
+                          android:textSize="25dp"
+                          android:textStyle="bold"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                />
 
             </LinearLayout>
 
@@ -140,11 +83,13 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp">
 
-                    <EditText android:id="@+id/register_et_fullname"
+                    <TextView android:id="@+id/profile_fullname"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
-                              android:inputType="textCapWords"
-                              android:hint="Nombre Completo" />
+                              android:text="name"
+                              android:textSize="20dp"
+                              android:inputType="textCapWords"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -153,11 +98,12 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp">
 
-                    <EditText android:id="@+id/register_et_email"
+                    <TextView android:id="@+id/profile_email"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
-                              android:inputType="textEmailAddress"
-                              android:hint="Correo" />
+                              android:textSize="20dp"
+                              android:text="email"
+                              android:inputType="textEmailAddress"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,15 +114,27 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp">
 
-                    <EditText
-                            android:id="@+id/register_et_company"
+                    <TextView
+                            android:id="@+id/profile_company"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Institución"/>
+                            android:textSize="20dp"
+                            android:text="UCA"
+                            android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/change_password_profile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="24dp"
+                        android:padding="12dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@android:color/white"
+                        android:text="Cambiar Contraseña"/>
+
+               <!--<com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -188,9 +146,9 @@
                               android:inputType="textPassword"
                               android:hint="Contraseña"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>-->
 
-                <com.google.android.material.textfield.TextInputLayout
+                <!--<com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -202,29 +160,7 @@
                               android:inputType="textPassword"
                               android:hint="Confirmar Contraseña"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/register_btn_register"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:padding="12dp"
-                        android:background="@color/colorPrimary"
-                        android:textColor="@android:color/white"
-                        android:text="Crear Cuenta"/>
-
-                <TextView android:id="@+id/register_btn_login"
-                          android:layout_width="fill_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_marginBottom="24dp"
-                          android:text="Ya eres miembro? Ingresa"
-                          android:gravity="center"
-                          android:textSize="16dip"/>
-
+                </com.google.android.material.textfield.TextInputLayout>-->
 
             </LinearLayout>
 
