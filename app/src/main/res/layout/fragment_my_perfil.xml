@@ -85,9 +85,12 @@
 
                     <TextView android:id="@+id/profile_fullname"
                               android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:text="name"
+                              android:layout_height="55dp"
+                              android:padding="10dp"
+                              android:drawableLeft="@drawable/ic_person_20dp"
                               android:textSize="20dp"
+                              android:drawablePadding="10dp"
+                              android:background="@drawable/input_background"
                               android:inputType="textCapWords"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -100,9 +103,12 @@
 
                     <TextView android:id="@+id/profile_email"
                               android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+                              android:layout_height="55dp"
                               android:textSize="20dp"
-                              android:text="email"
+                              android:padding="10dp"
+                              android:drawablePadding="10dp"
+                              android:drawableLeft="@drawable/ic_email_20dp"
+                              android:background="@drawable/input_background"
                               android:inputType="textEmailAddress"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -118,8 +124,11 @@
                             android:id="@+id/profile_company"
                             android:layout_width="match_parent"
                             android:textSize="20dp"
-                            android:text="UCA"
-                            android:layout_height="wrap_content"/>
+                            android:padding="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableLeft="@drawable/ic_account_balance_20dp"
+                            android:background="@drawable/input_background"
+                            android:layout_height="55dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +139,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/button"
                         android:textColor="@android:color/white"
                         android:text="Cambiar Contraseña"/>
 

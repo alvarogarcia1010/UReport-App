@@ -21,7 +21,10 @@
               tools:layout="@layout/fragment_google_maps" android:label="@string/maps"/>
 
     <fragment android:id="@+id/destination_my_perfil" android:name="com.agarcia.riskreporter.Fragments.MyPerfilFragment"
-              android:label="@string/my_perfil" tools:layout="@layout/fragment_my_perfil"/>
+              android:label="@string/my_perfil" tools:layout="@layout/fragment_my_perfil">
+        <action android:id="@+id/next_action"
+                app:destination="@id/destination_change_password"/>
+    </fragment>
 
     <fragment android:id="@+id/destination_report_detail"
               android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
@@ -38,6 +41,12 @@
     <fragment android:id="@+id/update_profile" android:name="com.agarcia.riskreporter.Fragments.UpatePerfilFragment"
               tools:layout="@layout/fragment_upate_perfil" android:label="Update Profile">
     <action android:id="@+id/go_back_to_profile" app:destination="@+id/destination_my_perfil"/>
+    </fragment>
+    <fragment android:id="@+id/destination_change_password"
+              android:name="com.agarcia.riskreporter.Fragments.ChangePassword"
+              android:label="Cambiar contraseña" tools:layout="@layout/fragment_change_password">
+        <action android:id="@+id/next_action_password"
+                app:destination="@id/destination_my_perfil"/>
     </fragment>
 
 </navigation>

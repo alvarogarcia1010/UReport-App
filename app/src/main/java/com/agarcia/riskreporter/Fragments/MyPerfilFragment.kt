@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_my_perfil.*
+import kotlinx.android.synthetic.main.fragment_my_perfil.view.*
 
 
 class MyPerfilFragment : Fragment() {
@@ -31,7 +32,15 @@ class MyPerfilFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        return inflater.inflate(R.layout.fragment_my_perfil, container, false)
+        val view = inflater.inflate(R.layout.fragment_my_perfil, container, false)
+
+        view.change_password_profile.setOnClickListener {
+            val nextAction = MyPerfilFragmentDirections.nextAction()
+            Navigation.findNavController(it).navigate(nextAction)
+        }
+
+        return view
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +55,7 @@ class MyPerfilFragment : Fragment() {
         }
 
         getUserData()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

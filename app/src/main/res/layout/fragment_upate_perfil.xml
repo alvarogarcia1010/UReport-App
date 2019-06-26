@@ -14,7 +14,7 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:gravity="center">
@@ -68,23 +68,35 @@
             >
 
                 <EditText android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
+                          android:layout_height="55dp"
+                          android:drawablePadding="10dp"
+                          android:padding="10dp"
+                          android:drawableLeft="@drawable/ic_person_20dp"
                           android:hint="Nombre"
+                          android:background="@drawable/input_background"
                           android:id="@+id/update_name"
-                          android:layout_marginTop="10dp"
+                          android:layout_marginTop="20dp"
                 />
 
                 <EditText android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
+                          android:layout_height="55dp"
                           android:hint="Email"
+                          android:drawablePadding="10dp"
+                          android:padding="10dp"
+                          android:drawableLeft="@drawable/ic_email_20dp"
+                          android:background="@drawable/input_background"
                           android:id="@+id/update_email"
                           android:layout_marginTop="15dp"
                 />
 
                 <EditText android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
+                          android:layout_height="55dp"
+                          android:drawableLeft="@drawable/ic_account_balance_20dp"
                           android:hint="Institucion"
+                          android:padding="10dp"
+                          android:drawablePadding="10dp"
                           android:id="@+id/update_institution"
+                          android:background="@drawable/input_background"
                           android:layout_marginTop="15dp"
                 />
 
@@ -95,9 +107,9 @@
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/button"
                         android:textColor="@android:color/white"
-                        android:text="Guadar"/>
+                        android:text="Guardar"/>
 
 
             </LinearLayout>
