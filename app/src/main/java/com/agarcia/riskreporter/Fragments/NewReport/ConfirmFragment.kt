@@ -82,7 +82,7 @@ class ConfirmFragment : Fragment() {
         fr_confirm_risk.text = risk
 
         fr_confirm_bt_save.setOnClickListener {
-            val report = Report(title,image,description,location,longitude,latitude,risk,fr_confirm_et_measures.text.toString(),name,uid,date,"false")
+            val report = Report(title,image,description,location,longitude,latitude,risk,fr_confirm_et_measures.text.toString(),name,uid,date,"Pendiente")
             Log.d("SIIIUU", report.toString())
             try{
                 saveOnFirebase(report)
@@ -95,7 +95,9 @@ class ConfirmFragment : Fragment() {
     private fun getUserName(){
         val ref = FirebaseDatabase.getInstance().getReference("/users").child(user!!.uid)
         ref.addListenerForSingleValueEvent(object :ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
+            override fun onCancelled(p0: DatabaseError){
+
+
             }
 
             override fun onDataChange(p0: DataSnapshot) {

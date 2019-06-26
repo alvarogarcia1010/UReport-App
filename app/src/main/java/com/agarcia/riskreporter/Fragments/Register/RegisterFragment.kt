@@ -1,4 +1,4 @@
-package com.agarcia.riskreporter.Fragments
+package com.agarcia.riskreporter.Fragments.Register
 
 import android.Manifest
 import android.app.Activity
@@ -6,12 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -22,25 +24,24 @@ import com.agarcia.riskreporter.Database.Models.User
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.ViewModel.UserViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_image.*
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
 import java.util.*
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var auth : FirebaseAuth
-
-    private lateinit var userViewModel : UserViewModel
-
     lateinit var picture: Button
     lateinit var gallery : Button
+    lateinit var buttonN : Button
 
     lateinit var photo : String
+
+    private var listenerTool : Internet? = null
 
     val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_IMAGE_CAPTURE_GALLERY= 0
@@ -50,6 +51,13 @@ class RegisterFragment : Fragment() {
     private val PERMISSION_REQUEST_CODE: Int = 101
     private val PERMISSION_REQUEST_CODE1: Int = 102
 
+    private lateinit var progress : ProgressBar
+
+    interface Internet{
+
+        fun internetTest() : Boolean
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         return inflater.inflate(R.layout.fragment_register, container, false)
@@ -58,81 +66,84 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
         picture = view.register_image_camera
 
         gallery = view.register_image_gallery
 
-        register_btn_register.setOnClickListener {
-            registrar()
-        }
+        buttonN = view.register_btn_next
 
-        register_btn_login.setOnClickListener {
-            val backAction = RegisterFragmentDirections.backAction()
-            Navigation.findNavController(it).navigate(backAction)
+        progress = view.progress_bar_register
+        progress.visibility = View.GONE
+
+        register_btn_next.setOnClickListener {
+            if(validate()){
+                val nextAction = RegisterFragmentDirections.step2Register(
+                    photo,
+                    register_et_fullname.text.toString(),
+                    register_et_email.text.toString(),
+                    register_et_company.text.toString()
+                )
+                Navigation.findNavController(it).navigate(nextAction)
+            }
         }
 
         picture.setOnClickListener {
-            if (checkPermission()) takePicture() else requestPermission()
+            if (checkPermission()){
+                if(listenerTool!!.internetTest()){
+                    takePicture()
+                }else{
+                    Snackbar.make(this.view!!, "Verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                requestPermission()
+            }
         }
 
         gallery.setOnClickListener {
-            if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
-        }
-
-    }
-
-    private fun registrar(){
-        if(!validate()){
-            failedRegister()
-            return
-        }
-
-        auth.createUserWithEmailAndPassword(register_et_email.text.toString(), register_et_password.text.toString())
-            .addOnCompleteListener {
-                if(!it.isSuccessful) return@addOnCompleteListener
-                Log.d("Register", "Usuario creado correctamente con uid: ${it.result?.user?.uid}")
-                registerOnFirebaseDatabase()
-            }.addOnFailureListener {
-                Log.d("Main", "Error al crear usuario: ${it.message}")
-                Toast.makeText(view?.context,"Error al registrarse. Verificar campos", Toast.LENGTH_SHORT).show()
+            if (checkPermissionGallery()){
+                if(listenerTool!!.internetTest()){
+                    selectPicture()
+                } else{
+                    Snackbar.make(this.view!!, "Verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                requestPermissionGallery()
             }
-    }
-
-    private fun registerOnFirebaseDatabase(){
-
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-        val reference = FirebaseDatabase.getInstance().getReference("/users/$uid")
-
-        val user = User(register_et_email.text.toString(),photo,register_et_fullname.text.toString(),register_et_company.text.toString(),false)
-
-        userViewModel.insertUser(user)
-
-        reference.setValue(user)
-            .addOnSuccessListener {
-                Log.d("Register", "Guardando datos en la base de datos")
-
-                val mIntent = Intent(activity, MainActivity::class.java)
-                startActivity(mIntent)
-                activity?.finish()
-            }.addOnFailureListener{
-                Log.d("Register", "Fallo al guardar (setear) valores en la base de datos: ${it.message}")
-            }
+        }
 
     }
 
     private fun validate(): Boolean{
         var valid = true
+
+        if(register_et_email.text.toString().isEmpty()){
+            register_et_email.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_email.error = null
+        }
+
+        if(register_et_fullname.text.toString().isEmpty()){
+            register_et_fullname.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_fullname.error = null
+        }
+
+        if(register_et_company.text.toString().isEmpty()){
+            register_et_company.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_company.error = null
+        }
+
+        if(!::photo.isInitialized){
+            Snackbar.make(this.view!!, "Favor selecicone una foto", Snackbar.LENGTH_SHORT).show()
+            valid = false
+        }
         return valid
     }
 
-    private fun failedRegister(){
-        Toast.makeText(view?.context,"Registro fallido", Toast.LENGTH_SHORT).show()
-        register_btn_register.isEnabled = true
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
@@ -176,14 +187,17 @@ class RegisterFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 1 && resultCode == Activity.RESULT_OK && data!=null){
-            fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            selectedPhotoUri = data.data
+            val bitmap = data.extras.get("data") as Bitmap
+            //fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            uploadImageToFirebaseStorage(bitmap)
         }
 
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data!=null){
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, selectedPhotoUri)
-            register_photo.setImageBitmap(bitmap)
-            uploadImageToFirebaseStorage()
+        //    register_photo.setImageBitmap(bitmap)
+            uploadImageToFirebaseStorage(bitmap)
         }
     }
 
@@ -203,7 +217,7 @@ class RegisterFragment : Fragment() {
         requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE1)
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage(bitmap: Bitmap){
         if(selectedPhotoUri == null) return
 
         val fileName = UUID.randomUUID().toString()
@@ -216,12 +230,34 @@ class RegisterFragment : Fragment() {
 
                 storage.downloadUrl.addOnSuccessListener {
                     Log.d("photo", "File location: $it")
-
+                    register_photo.setImageBitmap(bitmap)
+                    progress.visibility = View.GONE
                     photo = it.toString()
+                    buttonN.isEnabled = true
                 }
             }
             .addOnFailureListener {
                 Log.d("photo", "Fallo al subir la imagen al almacenamiento: ${it.message}")
+                progress.visibility = View.GONE
+                Snackbar.make(this.view!!, "Favor verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+            }.addOnProgressListener {
+                progress.visibility = View.VISIBLE
+                buttonN.isEnabled = false
             }
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        listenerTool = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Internet) {
+            listenerTool = context
+        } else {
+            throw RuntimeException("Se necesita una implementación de  la interfaz")
+        }
+    }
+
 }

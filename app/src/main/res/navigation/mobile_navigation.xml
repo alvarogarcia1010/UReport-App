@@ -16,10 +16,13 @@
                 app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_out_left"
                 app:popExitAnim="@anim/slide_in_right"/>
     </fragment>
+
     <fragment android:id="@+id/destination_maps" android:name="com.agarcia.riskreporter.Fragments.GoogleMapsFragment"
               tools:layout="@layout/fragment_google_maps" android:label="@string/maps"/>
+
     <fragment android:id="@+id/destination_my_perfil" android:name="com.agarcia.riskreporter.Fragments.MyPerfilFragment"
               android:label="@string/my_perfil" tools:layout="@layout/fragment_my_perfil"/>
+
     <fragment android:id="@+id/destination_report_detail"
               android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
               android:label="Detalle del reporte" tools:layout="@layout/fragment_report_detail">
@@ -27,7 +30,14 @@
     </fragment>
     <activity android:id="@+id/reportActivity" android:name="com.agarcia.riskreporter.Activities.ReportActivity"
               android:label="ReportActivity" tools:layout="@layout/activity_report"/>
+
     <fragment android:id="@+id/destination_settings"
               android:name="com.agarcia.riskreporter.Fragments.ReportDetailFragment"
               android:label="Editar Perfil" tools:layout="@layout/fragment_report_detail"/>
+
+    <fragment android:id="@+id/update_profile" android:name="com.agarcia.riskreporter.Fragments.UpatePerfilFragment"
+              tools:layout="@layout/fragment_upate_perfil" android:label="Update Profile">
+    <action android:id="@+id/go_back_to_profile" app:destination="@+id/destination_my_perfil"/>
+    </fragment>
+
 </navigation>

@@ -43,8 +43,16 @@ class LoginFragment : Fragment() {
 
         login_btn_register.setOnClickListener {
             val nextAction = LoginFragmentDirections.nextAction()
+            Log.d("holaaaaaaaa",it.toString())
+            Navigation.findNavController(it).navigate(nextAction)
+
+        }
+
+        login_forgot_pass.setOnClickListener {
+            val nextAction = LoginFragmentDirections.actionDestinationLoginToDestinationForgotPass()
             Navigation.findNavController(it).navigate(nextAction)
         }
+
 
         auth = FirebaseAuth.getInstance()
 

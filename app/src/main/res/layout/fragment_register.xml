@@ -1,176 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".Fragments.RegisterFragment">
+                android:padding="20dp"
+             tools:context=".Fragments.Register.RegisterFragment">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:gravity="center">
-
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                     android:id="@+id/register_photo"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="187dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="160dp"
                     android:src="@drawable/logo_a"
+                    android:layout_centerHorizontal="true"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"/>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
+            <ProgressBar
+                    android:id="@+id/progress_bar_register"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"/>
 
                 <Button
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="25dp"
                         android:id="@+id/register_image_camera"
                         android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_height="wrap_content"
                         android:text="Tomar foto"
-                        android:textSize="8dp"
-                        android:layout_marginRight="20dp"
+                        android:textSize="12dp"
                         android:background="@drawable/button"
                         android:textColor="@android:color/white"
                         android:drawablePadding="10dp"
+                        android:layout_below="@+id/register_photo"
                         android:padding="10dp"
                         android:drawableLeft="@drawable/ic_camera_24dp"/>
 
                 <Button
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_below="@+id/register_photo"
                         android:id="@+id/register_image_gallery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"
-                        android:textSize="8dp"
+                        android:textSize="12dp"
                         android:textColor="@android:color/white"
                         android:text="Agregar foto"
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:drawableLeft="@drawable/ic_photo_library_24dp"/>
 
-            </LinearLayout>
 
 
-        </LinearLayout>
-
-        <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
-
-                    <EditText android:id="@+id/register_et_fullname"
+                    <EditText android:layout_marginTop="20dp"
+                            android:layout_below="@+id/register_image_camera"
+                            android:id="@+id/register_et_fullname"
                               android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+                              android:padding="10dp"
+                              android:drawablePadding="10dp"
+                              android:drawableLeft="@drawable/ic_person_20dp"
+                              android:background="@drawable/input_background"
+                              android:layout_height="55dp"
                               android:inputType="textCapWords"
                               android:hint="Nombre Completo" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
 
-                    <EditText android:id="@+id/register_et_email"
+                    <EditText android:drawableLeft="@drawable/ic_email_20dp"
+                            android:layout_marginTop="20dp"
+                              android:id="@+id/register_et_email"
                               android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+                              android:layout_height="55dp"
+                              android:padding="10dp"
+                              android:drawablePadding="10dp"
+                              android:background="@drawable/input_background"
+                              android:layout_below="@+id/register_et_fullname"
                               android:inputType="textEmailAddress"
                               android:hint="Correo" />
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
 
                     <EditText
+                            android:padding="10dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/input_background"
+                            android:layout_below="@+id/register_et_email"
                             android:id="@+id/register_et_company"
+                            android:drawableLeft="@drawable/ic_account_balance_20dp"
+                            android:drawablePadding="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:hint="Institución"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
-
-                    <EditText android:id="@+id/register_et_password"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:inputType="textPassword"
-                              android:hint="Contraseña"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
-
-                    <EditText android:id="@+id/register_et_passwordconfirm"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:inputType="textPassword"
-                              android:hint="Confirmar Contraseña"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
 
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/register_btn_register"
+                        android:layout_below="@+id/register_et_company"
+                        android:id="@+id/register_btn_next"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/button"
                         android:textColor="@android:color/white"
-                        android:text="Crear Cuenta"/>
-
-                <TextView android:id="@+id/register_btn_login"
-                          android:layout_width="fill_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_marginBottom="24dp"
-                          android:text="Ya eres miembro? Ingresa"
-                          android:gravity="center"
-                          android:textSize="16dip"/>
+                        android:text="Siguiente"/>
 
 
-            </LinearLayout>
-
-
-        </ScrollView>
-
-
-
-    </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>

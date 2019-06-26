@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/destination_settings"
+            android:id="@+id/update_profile"
             app:showAsAction="ifRoom"
             android:icon="@drawable/ic_edit_black_24dp"
             android:title="Settings"/>
