@@ -84,6 +84,7 @@ class UpatePerfilFragment : Fragment() {
         }
 
         //buttonS = view.fr_image_bt_next
+        getUserData()
 
         view.update_save.setOnClickListener {
             val dbuser = FirebaseDatabase.getInstance().getReference("users").child(user.uid)
@@ -102,6 +103,37 @@ class UpatePerfilFragment : Fragment() {
 
 
         return view
+    }
+
+    fun getUserData(){
+        val ref = FirebaseDatabase.getInstance().getReference("/users").child(user!!.uid)
+        Log.d("hola", ref.toString())
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                Log.d("hola2", currentuser.toString())
+                currentuser = p0.getValue(User::class.java)!!
+                Log.d("hola3", currentuser.toString())
+                bindData(currentuser)
+
+                /*userViewModel.getuserbyname(name){
+                    var item = it.value?: User()
+                    bindData(item)
+
+                }*/
+            }
+        })
+
+
+    }
+
+    fun bindData(item: User){
+        update_name.setText(item.full_name)
+        update_email.setText(item.email)
+        update_institution.setText(item.company)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
