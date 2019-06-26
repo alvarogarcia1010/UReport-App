@@ -2,15 +2,18 @@ package com.agarcia.riskreporter.Fragments.Register
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -21,6 +24,7 @@ import com.agarcia.riskreporter.Database.Models.User
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.ViewModel.UserViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -33,8 +37,11 @@ class RegisterFragment : Fragment() {
 
     lateinit var picture: Button
     lateinit var gallery : Button
+    lateinit var buttonN : Button
 
     lateinit var photo : String
+
+    private var listenerTool : Internet? = null
 
     val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_IMAGE_CAPTURE_GALLERY= 0
@@ -43,6 +50,13 @@ class RegisterFragment : Fragment() {
 
     private val PERMISSION_REQUEST_CODE: Int = 101
     private val PERMISSION_REQUEST_CODE1: Int = 102
+
+    private lateinit var progress : ProgressBar
+
+    interface Internet{
+
+        fun internetTest() : Boolean
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
@@ -55,6 +69,11 @@ class RegisterFragment : Fragment() {
         picture = view.register_image_camera
 
         gallery = view.register_image_gallery
+
+        buttonN = view.register_btn_next
+
+        progress = view.progress_bar_register
+        progress.visibility = View.GONE
 
         register_btn_next.setOnClickListener {
             if(validate()){
@@ -69,17 +88,59 @@ class RegisterFragment : Fragment() {
         }
 
         picture.setOnClickListener {
-            if (checkPermission()) takePicture() else requestPermission()
+            if (checkPermission()){
+                if(listenerTool!!.internetTest()){
+                    takePicture()
+                }else{
+                    Snackbar.make(this.view!!, "Verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                requestPermission()
+            }
         }
 
         gallery.setOnClickListener {
-            if (checkPermissionGallery()) selectPicture() else requestPermissionGallery()
+            if (checkPermissionGallery()){
+                if(listenerTool!!.internetTest()){
+                    selectPicture()
+                } else{
+                    Snackbar.make(this.view!!, "Verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                requestPermissionGallery()
+            }
         }
 
     }
 
     private fun validate(): Boolean{
         var valid = true
+
+        if(register_et_email.text.toString().isEmpty()){
+            register_et_email.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_email.error = null
+        }
+
+        if(register_et_fullname.text.toString().isEmpty()){
+            register_et_fullname.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_fullname.error = null
+        }
+
+        if(register_et_company.text.toString().isEmpty()){
+            register_et_company.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_company.error = null
+        }
+
+        if(!::photo.isInitialized){
+            Snackbar.make(this.view!!, "Favor selecicone una foto", Snackbar.LENGTH_SHORT).show()
+            valid = false
+        }
         return valid
     }
 
@@ -170,11 +231,33 @@ class RegisterFragment : Fragment() {
                 storage.downloadUrl.addOnSuccessListener {
                     Log.d("photo", "File location: $it")
                     register_photo.setImageBitmap(bitmap)
+                    progress.visibility = View.GONE
                     photo = it.toString()
+                    buttonN.isEnabled = true
                 }
             }
             .addOnFailureListener {
                 Log.d("photo", "Fallo al subir la imagen al almacenamiento: ${it.message}")
+                progress.visibility = View.GONE
+                Snackbar.make(this.view!!, "Favor verifique su conexión!", Snackbar.LENGTH_SHORT).show()
+            }.addOnProgressListener {
+                progress.visibility = View.VISIBLE
+                buttonN.isEnabled = false
             }
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        listenerTool = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Internet) {
+            listenerTool = context
+        } else {
+            throw RuntimeException("Se necesita una implementación de  la interfaz")
+        }
+    }
+
 }

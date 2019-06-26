@@ -7,19 +7,26 @@
              tools:context=".Fragments.Register.RegisterFragment">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                     android:id="@+id/register_photo"
-                    android:layout_width="150dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="150dp"
+                    android:layout_width="187dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="160dp"
                     android:src="@drawable/logo_a"
                     android:layout_centerHorizontal="true"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"/>
 
+            <ProgressBar
+                    android:id="@+id/progress_bar_register"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"/>
+
                 <Button
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="45dp"
+                        android:layout_marginRight="25dp"
                         android:id="@+id/register_image_camera"
                         android:layout_width="wrap_content"
                         android:layout_alignParentRight="true"
@@ -35,7 +42,7 @@
 
                 <Button
                         android:layout_marginTop="15dp"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_below="@+id/register_photo"
                         android:id="@+id/register_image_gallery"
                         android:layout_width="wrap_content"
@@ -66,7 +73,6 @@
                     <EditText android:drawableLeft="@drawable/ic_email_20dp"
                             android:layout_marginTop="20dp"
                               android:id="@+id/register_et_email"
-
                               android:layout_width="match_parent"
                               android:layout_height="55dp"
                               android:padding="10dp"

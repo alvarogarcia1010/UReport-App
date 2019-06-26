@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -16,11 +17,14 @@ import com.agarcia.riskreporter.Database.Models.User
 
 import com.agarcia.riskreporter.R
 import com.agarcia.riskreporter.ViewModel.UserViewModel
+import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register_fragment_part2.*
-
+import kotlinx.android.synthetic.main.fragment_register_fragment_part2.view.*
 
 
 class RegisterFragmentPart2 : Fragment() {
@@ -33,6 +37,8 @@ class RegisterFragmentPart2 : Fragment() {
     private lateinit var email : String
     private lateinit var image_url : String
     private lateinit var company : String
+
+    private lateinit var photo2 : ImageView
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,6 +59,10 @@ class RegisterFragmentPart2 : Fragment() {
             company = safeArgs.company
         }
 
+        photo2 = view.register_photo2
+
+        Glide.with(view!!.context).load(image_url).into(photo2)
+
         register_btn_login.setOnClickListener {
             val backAction = RegisterFragmentDirections.backAction()
             Navigation.findNavController(it).navigate(backAction)
@@ -69,13 +79,32 @@ class RegisterFragmentPart2 : Fragment() {
 
     private fun validate(): Boolean{
         var valid = true
+        if(register_et_password2.text.toString().isEmpty()){
+            register_et_password2.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_password2.error = null
+        }
+
+        if(register_et_passwordconfirm.text.toString().isEmpty()){
+            register_et_passwordconfirm.error = "Campo vacío"
+            valid = false
+        } else{
+            register_et_passwordconfirm.error = null
+        }
+
+        if(register_et_password2.text.toString() != register_et_passwordconfirm.text.toString()){
+            Snackbar.make(this.view!!, "Contraseñas no coinciden", Snackbar.LENGTH_SHORT).show()
+            valid = false
+        }
+
         return valid
     }
 
 
     private fun registrar(){
         if(!validate()){
-            //failedRegister()
+            failedRegister()
             return
         }
 
@@ -86,7 +115,7 @@ class RegisterFragmentPart2 : Fragment() {
                 registerOnFirebaseDatabase()
             }.addOnFailureListener {
                 Log.d("Main", "Error al crear usuario: ${it.message}")
-                Toast.makeText(view?.context,"Error al registrarse. Verificar campos", Toast.LENGTH_SHORT).show()
+                Snackbar.make(this.view!!, "Registro Fallido. Verifique su conexión a internet.", Snackbar.LENGTH_SHORT).show()
             }
     }
 
@@ -111,12 +140,8 @@ class RegisterFragmentPart2 : Fragment() {
 
     }
 
-    /*private fun failedRegister(){
-        progress.visibility = View.GONE
-        Log.d("Nose", progress.visibility.toString())
-        Toast.makeText(view?.context,"Login fallido", Toast.LENGTH_SHORT).show()
-        login_btn_login.isEnabled = true
-
-    }*/
+    private fun failedRegister(){
+        register_btn_register.isEnabled = true
+    }
 
 }
