@@ -32,7 +32,7 @@ class ReportListFragment : Fragment() {
     lateinit var adapter: ReportAdapter
     private lateinit var reportsRef: DatabaseReference
     private lateinit var uid : String
-    private lateinit var user : FirebaseUser
+    lateinit var user : FirebaseUser
     private var calledAlready = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?

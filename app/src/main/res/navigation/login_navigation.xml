@@ -14,6 +14,8 @@
               android:label="fragment_register" tools:layout="@layout/fragment_register">
         <action android:id="@+id/back_action"
                 app:destination="@id/destination_login"/>
+        <action android:id="@+id/step2_register"
+                app:destination="@id/destination_register2"/>
     </fragment>
 
     <fragment android:id="@+id/destination_forgot_pass" android:name="com.agarcia.riskreporter.Fragments.ResetPassword"
@@ -21,4 +23,13 @@
         <action android:id="@+id/go_to_login"
                 app:destination="@id/destination_login"/>
     </fragment>
+
+    <fragment android:id="@+id/destination_register2" android:name="com.agarcia.riskreporter.Fragments.Register.RegisterFragmentPart2"
+              android:label="fragment_register2" tools:layout="@layout/fragment_register_fragment_part2">
+        <argument android:name="photo" app:argType="string"/>
+        <argument android:name="name" app:argType="string"/>
+        <argument android:name="mail" app:argType="string"/>
+        <argument android:name="company" app:argType="string"/>
+    </fragment>
+
 </navigation>

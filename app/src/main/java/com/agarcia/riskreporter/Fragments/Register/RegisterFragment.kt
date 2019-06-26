@@ -31,10 +31,6 @@ import java.util.*
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var auth : FirebaseAuth
-
-    private lateinit var userViewModel : UserViewModel
-
     lateinit var picture: Button
     lateinit var gallery : Button
 
@@ -56,21 +52,20 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
         picture = view.register_image_camera
 
         gallery = view.register_image_gallery
 
-        register_btn_register.setOnClickListener {
-            registrar()
-        }
-
-        register_btn_login.setOnClickListener {
-            val backAction = RegisterFragmentDirections.backAction()
-            Navigation.findNavController(it).navigate(backAction)
+        register_btn_next.setOnClickListener {
+            if(validate()){
+                val nextAction = RegisterFragmentDirections.step2Register(
+                    photo,
+                    register_et_fullname.text.toString(),
+                    register_et_email.text.toString(),
+                    register_et_company.text.toString()
+                )
+                Navigation.findNavController(it).navigate(nextAction)
+            }
         }
 
         picture.setOnClickListener {
@@ -83,54 +78,11 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun registrar(){
-        if(!validate()){
-            failedRegister()
-            return
-        }
-
-        auth.createUserWithEmailAndPassword(register_et_email.text.toString(), register_et_password.text.toString())
-            .addOnCompleteListener {
-                if(!it.isSuccessful) return@addOnCompleteListener
-                Log.d("Register", "Usuario creado correctamente con uid: ${it.result?.user?.uid}")
-                registerOnFirebaseDatabase()
-            }.addOnFailureListener {
-                Log.d("Main", "Error al crear usuario: ${it.message}")
-                Toast.makeText(view?.context,"Error al registrarse. Verificar campos", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun registerOnFirebaseDatabase(){
-
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-        val reference = FirebaseDatabase.getInstance().getReference("/users/$uid")
-
-        val user = User(register_et_email.text.toString(),photo,register_et_fullname.text.toString(),register_et_company.text.toString(),false)
-
-        userViewModel.insertUser(user)
-
-        reference.setValue(user)
-            .addOnSuccessListener {
-                Log.d("Register", "Guardando datos en la base de datos")
-
-                val mIntent = Intent(activity, MainActivity::class.java)
-                startActivity(mIntent)
-                activity?.finish()
-            }.addOnFailureListener{
-                Log.d("Register", "Fallo al guardar (setear) valores en la base de datos: ${it.message}")
-            }
-
-    }
-
     private fun validate(): Boolean{
         var valid = true
         return valid
     }
 
-    private fun failedRegister(){
-        Toast.makeText(view?.context,"Registro fallido", Toast.LENGTH_SHORT).show()
-        register_btn_register.isEnabled = true
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
@@ -174,14 +126,17 @@ class RegisterFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 1 && resultCode == Activity.RESULT_OK && data!=null){
-            fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            selectedPhotoUri = data.data
+            val bitmap = data.extras.get("data") as Bitmap
+            //fr_image_image.setImageBitmap(data.extras.get("data") as Bitmap)
+            uploadImageToFirebaseStorage(bitmap)
         }
 
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data!=null){
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(view!!.context.contentResolver, selectedPhotoUri)
-            register_photo.setImageBitmap(bitmap)
-            uploadImageToFirebaseStorage()
+        //    register_photo.setImageBitmap(bitmap)
+            uploadImageToFirebaseStorage(bitmap)
         }
     }
 
@@ -201,7 +156,7 @@ class RegisterFragment : Fragment() {
         requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE1)
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage(bitmap: Bitmap){
         if(selectedPhotoUri == null) return
 
         val fileName = UUID.randomUUID().toString()
@@ -214,7 +169,7 @@ class RegisterFragment : Fragment() {
 
                 storage.downloadUrl.addOnSuccessListener {
                     Log.d("photo", "File location: $it")
-
+                    register_photo.setImageBitmap(bitmap)
                     photo = it.toString()
                 }
             }
