@@ -30,6 +30,8 @@
         <argument android:name="name" app:argType="string"/>
         <argument android:name="mail" app:argType="string"/>
         <argument android:name="company" app:argType="string"/>
+        <action android:id="@+id/back_action"
+                app:destination="@id/destination_login"/>
     </fragment>
 
 </navigation>

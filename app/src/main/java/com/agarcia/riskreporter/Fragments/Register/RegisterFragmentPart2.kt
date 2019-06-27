@@ -64,7 +64,7 @@ class RegisterFragmentPart2 : Fragment() {
         Glide.with(view!!.context).load(image_url).into(photo2)
 
         register_btn_login.setOnClickListener {
-            val backAction = RegisterFragmentDirections.backAction()
+            val backAction = RegisterFragmentPart2Directions.backAction()
             Navigation.findNavController(it).navigate(backAction)
         }
 
