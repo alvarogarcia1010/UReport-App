@@ -52,7 +52,8 @@ class LocationFragment : Fragment() , OnMapReadyCallback,  GoogleMap.OnMarkerCli
         val view= inflater.inflate(R.layout.fragment_location, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.subtitle = getString(R.string.step_3)
-
+        latitude ="13.679937232742821"
+        longitude = "-89.23708353191614"
         initMap()
 
         return view
